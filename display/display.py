@@ -4,7 +4,7 @@
 This part of the code exposes functions to interface with the eink display
 """
 
-import display.epd12in48b as eink
+import display.epd7in5b_V2 as eink
 from PIL import Image
 import logging
 
@@ -17,7 +17,7 @@ class DisplayHelper:
         self.screenwidth = width
         self.screenheight = height
         self.epd = eink.EPD()
-        self.epd.Init()
+        self.epd.init()
 
     def update(self, blackimg, redimg):
         # Updates the display with the grayscale and red images
