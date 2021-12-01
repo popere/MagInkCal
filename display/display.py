@@ -7,6 +7,7 @@ This part of the code exposes functions to interface with the eink display
 import display.epd7in5b_V2 as eink
 from PIL import Image
 import logging
+import traceback
 
 
 class DisplayHelper:
@@ -18,12 +19,13 @@ class DisplayHelper:
         self.screenheight = height
         self.epd = eink.EPD()
         self.epd.init()
+        self.epd.Clear()
 
     def update(self, blackimg, redimg):
         # Updates the display with the grayscale and red images
         # start displaying on eink display
         # self.epd.clear()
-        self.epd.display(blackimg, redimg)
+        self.epd.display(self.epd.getbuffer(blackimg), self.epd.getbuffer(redimg))
         self.logger.info('E-Ink display update complete.')
 
     def calibrate(self, cycles=1):
@@ -38,6 +40,6 @@ class DisplayHelper:
 
     def sleep(self):
         # send E-Ink display to deep sleep
-        self.epd.EPD_Sleep()
+        self.epd.sleep()
         self.logger.info('E-Ink display entered deep sleep.')
 
