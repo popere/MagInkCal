@@ -191,8 +191,8 @@ class RenderHelper:
                 elif event['allday']:
                     cal_events_text += '">' + event['summary']
                 else:
-                    cal_events_text += '">' + self.get_short_time(event['startDatetime'], is24hour) + ' ' + event[
-                        'summary']
+                    cal_events_text += '"><div>' + self.get_short_time(event['startDatetime'], is24hour) + '</div><div> ' + event[
+                        'summary'] + '</div>'
                 cal_events_text += '</div>\n'
             if len(calList[i]) > maxEventsPerDay:
                 cal_events_text += '<div class="event text-muted">' + str(len(calList[i]) - maxEventsPerDay) + ' more'
