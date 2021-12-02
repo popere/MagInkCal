@@ -95,14 +95,14 @@ Calendar Styling */
 }
 
 .month {
-  font-size: 13rem;
+  font-size: 10rem;
   font-family: "Quattrocento-Regular";
 }
 
 @media (min-width: 992px) {
   .month {
-    font-size: 13rem;
-    line-height: 13rem;
+    font-size: 10rem;
+    line-height: 10rem;
     font-family: "Quattrocento-Regular";
   }
 }
@@ -121,7 +121,7 @@ Calendar Styling */
 .calendar .day-names li {
   text-transform: uppercase;
   margin-top: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .calendar .days li {
@@ -160,16 +160,18 @@ Calendar Styling */
 }
 
 .calendar .days li .event {
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   /* font-weight: bold;*/
   padding: 0.1rem;
   /* color: black; */
   /* font-family: "Judson-Regular";*/
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: initial;
+  /* overflow: hidden; */
+  overflow: initial;
+  text-overflow: initial;
   border-radius: 0rem;
   margin-bottom: 1px;
+
 }
 
 .calendar .days li .event.span-2 {

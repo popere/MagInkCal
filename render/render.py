@@ -189,9 +189,9 @@ class RenderHelper:
                         # calHtmlList.append(' text-multiday">')
                         cal_events_text += '">◄' + event['summary']
                 elif event['allday']:
-                    cal_events_text += '">' + event['summary']
+                    cal_events_text += '"> ⚫' + event['summary']
                 else:
-                    cal_events_text += '"><div>' + self.get_short_time(event['startDatetime'], is24hour) + '</div><div> ' + event[
+                    cal_events_text += '"><div> ⚫' + self.get_short_time(event['startDatetime'], is24hour) + '</div><div> ' + event[
                         'summary'] + '</div>'
                 cal_events_text += '</div>\n'
             if len(calList[i]) > maxEventsPerDay:

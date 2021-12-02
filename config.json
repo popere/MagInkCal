@@ -4,7 +4,7 @@
   "maxEventsPerDay": 3,
   "isDisplayToScreen": true,
   "isShutdownOnComplete": false,
-  "batteryDisplayMode": 1,
+  "batteryDisplayMode": 0,
   "weekStartDay": 0,
   "dayOfWeekText": ["L", "M", "X", "J", "V", "S", "D"],
   "screenWidth": 800,
