@@ -160,8 +160,8 @@ class RenderHelper:
         # Populate weather
         weather = calDict['weather']
         self.logger.info(weather['current']['temp'])
-        self.logger.info(weather['daily'][0]['weather'])
-        self.logger.info(weather['daily'][0]['temp'])
+        self.logger.info(weather['daily'][0]['weather']['main'])
+        self.logger.info(weather['daily'][0]['temp']['max'])
         weatherText = '<div>Bilbao: ' +  weather['daily'][0]['weather']['main'] + '</div>\n'
         # weatherText += '<div>Max: ' + str(round(weather['daily'][0]['temp']['max'])) + '°C</div>\n'
         # weatherText = '<div class="now">Now: ' + round(weather['current']['temp']) + '°C</div>\n'
