@@ -19,4 +19,6 @@ class WeatherHelper:
         self.logger.warn('weather: ' + json.dumps(self.weatherDaily))
 
     def weatherDaily(self):
-      return self.weatherDaily['daily']
+        self.logger.warn('weather: ' + json.dumps(self.weatherDaily))
+
+        return self.weatherDaily['daily']

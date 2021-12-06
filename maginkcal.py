@@ -69,15 +69,13 @@ def main():
         calStartDatetime = displayTZ.localize(dt.datetime.combine(calStartDate, dt.datetime.min.time()))
         calEndDatetime = displayTZ.localize(dt.datetime.combine(calEndDate, dt.datetime.max.time()))
 
-
-
         if (weather) :
-          weatherService = WeatherHelper(lat, lon, units)
-          weatherDaily = weatherService.weatherDaily()
+            weatherService = WeatherHelper(lat, lon, units)
+            weatherDaily = weatherService.weatherDaily()
 
-          logger.warn(weatherDaily)
+            logger.warn(weatherDaily)
 
-          # logger.info("Weather daily recovered: " + json.dumps(weatherDaily[0]))
+            # logger.info("Weather daily recovered: " + json.dumps(weatherDaily[0]))
 
         # Using Google Calendar to retrieve all events within start and end date (inclusive)
         start = dt.datetime.now()
