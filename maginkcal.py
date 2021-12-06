@@ -10,7 +10,7 @@ CSS stylesheets in the "render" folder.
 """
 import datetime as dt
 import sys
-import pdb; pdb.set_trace()
+import pdb; 
 
 from pytz import timezone
 from gcal.gcal import GcalHelper
@@ -19,6 +19,8 @@ from power.power import PowerHelper
 from weather.weather import WeatherHelper
 import json
 import logging
+
+
 
 def main():
     # Basic configuration settings (user replaceable)
@@ -74,6 +76,8 @@ def main():
     if (weather) :
         weatherService = WeatherHelper(lat, lon, units)
         weather = weatherService.weather()
+
+    pdb.set_trace()
 
     # Using Google Calendar to retrieve all events within start and end date (inclusive)
     start = dt.datetime.now()
