@@ -14,9 +14,8 @@ class WeatherHelper:
             with open(self.currPath + '/api.key', 'r') as token:
                 apiKeyFile = token.read().replace('\n', '')
         query = {'lat': lat, 'lon': lon, 'units': units, 'appid': apiKeyFile}
-        self.logger.warn(json.dumps(query))
         self.weatherDaily = requests.get("https://api.openweathermap.org/data/2.5/onecall", params=query)
-        # self.logger.warn('weather: ' + json.dumps(self.weatherDaily))
+        self.logger.info('weather recovered sucessfully')
 
     def weatherDaily(self):
         self.logger.warn('weather: ' + json.dumps(self.weatherDaily.json()))
