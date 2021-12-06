@@ -162,7 +162,7 @@ class RenderHelper:
         if (weather):
           weatherText = '<div>Bilbao: ' +  weather['current']['weather']['main'] + '</div>\n'
           weatherText += '<div>Max: ' + weather['daily'][0]['temp']['max'] + '°C</div>\n'
-          weatherText += '<div class="now">Now: ' + weather['current']['temp']+ '°C</div>\n'
+          weatherText += '<div class="now">Now: ' + weather['current']['temp'] + '°C</div>\n'
           weatherText += '<div>Min: ' + weather['daily'][0]['temp']['min'] + '°C</div>\n'
 
         # Populate the day of week row
@@ -212,6 +212,8 @@ class RenderHelper:
         htmlFile.write(calendar_template.format(month=month_name, battText=battText, dayOfWeek=cal_days_of_week,
                                                 events=cal_events_text, weather=weather))
         htmlFile.close()
+
+        self.logger.info('HTML generated')
 
         calBlackImage, calRedImage = self.get_screenshot()
 
