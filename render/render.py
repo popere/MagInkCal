@@ -159,13 +159,10 @@ class RenderHelper:
 
         # Populate weather
         weather = calDict['weather']
-        self.logger.info(weather['current']['temp'])
-        self.logger.info(weather['daily'][0]['weather'][0]['main'])
-        self.logger.info(weather['daily'][0]['temp']['max'])
         weatherText = '<div>Bilbao: ' +  weather['daily'][0]['weather'][0]['main'] + '</div>\n'
         weatherText += '<div>Max: ' + str(round(weather['daily'][0]['temp']['max'])) + '°C</div>\n'
-        weatherText = '<div class="now">Now: ' + round(weather['current']['temp']) + '°C</div>\n'
-        weatherText += '<div>Min: ' + round(weather['daily'][0]['temp']['min']) + '°C</div>\n'
+        weatherText = '<div class="now">Now: ' + str(round(weather['current']['temp'])) + '°C</div>\n'
+        weatherText += '<div>Min: ' + str(round(weather['daily'][0]['temp']['min'])) + '°C</div>\n'
 
         # Populate the day of week row
         cal_days_of_week = ''
