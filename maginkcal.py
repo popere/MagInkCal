@@ -41,7 +41,7 @@ def main():
     is24hour = config['is24h']  # set 24 hour time
     weather = config['weather']  # weather (true / false)
     lat = config['lat']  # set lat for weather
-    long = config['long']  # set long for weather
+    lon = config['lon']  # set long for weather
     units = config['units']  # set units for weather
 
     # Create and configure logger
@@ -72,7 +72,7 @@ def main():
 
 
         if (weather) :
-          weatherService = WeatherHelper(lat, long, units)
+          weatherService = WeatherHelper(lat, lon, units)
           weather = weatherService.weather()
 
           logger.info("Weather recovered: " + json.dumps(weather))

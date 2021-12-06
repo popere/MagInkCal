@@ -20,6 +20,6 @@
   ],
   "weather": true,
   "lat": 43.262711,
-  "long": -2.92528,
+  "lon": -2.92528,
   "units": "metric"
 }

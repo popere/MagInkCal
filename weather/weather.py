@@ -6,14 +6,14 @@ import json
 
 class WeatherHelper:
 
-    def __init__(self, lat, long, units):
+    def __init__(self, lat, lon, units):
         # Initialise the display
         self.logger = logging.getLogger('maginkcal')
         self.currPath = str(pathlib.Path(__file__).parent.absolute())
         if os.path.exists(self.currPath + '/api.key'):
             with open(self.currPath + '/api.key', 'r') as token:
                 apiKeyFile = token.read()
-        query = {'lat': lat, 'long': long, 'units': units, 'appid': apiKeyFile}
+        query = {'lat': lat, 'lon': lon, 'units': units, 'appid': apiKeyFile}
         self.logger.warn(json.dumps(query))
         self.weather = requests.get("https://api.openweathermap.org/data/2.5/onecall", params=query).json()
         self.logger.warn('weather: ' + json.dumps(self.weather))
