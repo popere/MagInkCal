@@ -203,12 +203,12 @@ Calendar Styling */
 }
 
 div.weather_container {
-  width: 180px;
-  height: 180px;
+  width: 160px;
+  height: 200px;
   position: absolute;
   top: 5;
-  left: 300;
-  font-size: 2rem;
+  left: 320;
+  font-size: 1.5rem;
   overflow: hidden;
 }
 
