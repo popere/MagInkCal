@@ -15,9 +15,9 @@ from pytz import timezone
 from gcal.gcal import GcalHelper
 from render.render import RenderHelper
 from power.power import PowerHelper
+from weather.weather import WeatherHelper
 import json
 import logging
-
 
 def main():
     # Basic configuration settings (user replaceable)
@@ -39,6 +39,10 @@ def main():
     rotateAngle = config['rotateAngle']  # If image is rendered in portrait orientation, angle to rotate to fit screen
     calendars = config['calendars']  # Google calendar ids
     is24hour = config['is24h']  # set 24 hour time
+    weather = config['weather']  # weather (true / false)
+    lat = config['lat']  # set lat for weather
+    long = config['long']  # set long for weather
+    units = config['units']  # set units for weather
 
     # Create and configure logger
     logging.basicConfig(filename="logfile.log", format='%(asctime)s %(levelname)s - %(message)s', filemode='a')
@@ -64,6 +68,14 @@ def main():
         calEndDate = calStartDate + dt.timedelta(days=(2 * 7 - 1))
         calStartDatetime = displayTZ.localize(dt.datetime.combine(calStartDate, dt.datetime.min.time()))
         calEndDatetime = displayTZ.localize(dt.datetime.combine(calEndDate, dt.datetime.max.time()))
+
+
+
+        if (weather) :
+          weatherService = WeatherHelper(lat, long, units)
+          weather = weatherService.weather()
+
+          logger.info("Weather recovered: " + weather)
 
         # Using Google Calendar to retrieve all events within start and end date (inclusive)
         start = dt.datetime.now()

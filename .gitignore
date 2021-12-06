@@ -6,6 +6,8 @@ gcal/token.pickle
 render/calendar.html
 render/calendar.png
 
+weather/api.key
+
 #intellij config
 .idea/
 
