@@ -158,12 +158,12 @@ class RenderHelper:
             battText = 'batteryHide'
 
         # Populate weather
-        weather = calDict['weather']
-        if (weather):
-          weatherText = '<div>Bilbao: ' +  weather['current']['weather']['main'] + '</div>\n'
-          weatherText += '<div>Max: ' + weather['daily'][0]['temp']['max'] + '°C</div>\n'
-          weatherText += '<div class="now">Now: ' + weather['current']['temp'] + '°C</div>\n'
-          weatherText += '<div>Min: ' + weather['daily'][0]['temp']['min'] + '°C</div>\n'
+        # weather = calDict['weather']
+        # if (weather):
+        #   weatherText = '<div>Bilbao: ' +  weather['current']['weather']['main'] + '</div>\n'
+        #   weatherText += '<div>Max: ' + weather['daily'][0]['temp']['max'] + '°C</div>\n'
+        #   weatherText += '<div class="now">Now: ' + weather['current']['temp'] + '°C</div>\n'
+        #   weatherText += '<div>Min: ' + weather['daily'][0]['temp']['min'] + '°C</div>\n'
 
         # Populate the day of week row
         cal_days_of_week = ''
