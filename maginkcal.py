@@ -75,7 +75,9 @@ def main():
           weatherService = WeatherHelper(lat, lon, units)
           weatherDaily = weatherService.weatherDaily()
 
-          logger.info("Weather daily recovered: " + json.dumps(weatherDaily[0]))
+          logger.warn(weatherDaily)
+
+          # logger.info("Weather daily recovered: " + json.dumps(weatherDaily[0]))
 
         # Using Google Calendar to retrieve all events within start and end date (inclusive)
         start = dt.datetime.now()
