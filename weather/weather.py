@@ -13,7 +13,7 @@ class WeatherHelper:
         self.currPath = str(pathlib.Path(__file__).parent.absolute())
         if os.path.exists(self.currPath + '/api.key'):
             with open(self.currPath + '/api.key', 'rb') as token:
-                apiKeyFile = token
+                apiKeyFile = token.read().rstrip()
         self.logger.warn('apiKeyFile: ' + apiKeyFile)
         query = {'lat': lat, 'long': long, 'units': units, 'api': apiKeyFile}
         self.weather = requests.get("https://api.openweathermap.org/data/2.5/onecall", params=query).json()
