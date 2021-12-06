@@ -19,7 +19,6 @@ class WeatherHelper:
     def weatherDaily(self):
         if self.query:
             weather = requests.get("https://api.openweathermap.org/data/2.5/onecall", params=self.query).json()
-            self.logger.warn('weather: ' + json.dumps(weather))
             return weather['daily']
         else:
             return None

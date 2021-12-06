@@ -73,7 +73,7 @@ def main():
             weatherService = WeatherHelper(lat, lon, units)
             weatherDaily = weatherService.weatherDaily()
 
-            logger.warn(weatherDaily)
+            logger.info(weatherDaily)
 
             # logger.info("Weather daily recovered: " + json.dumps(weatherDaily[0]))
 
