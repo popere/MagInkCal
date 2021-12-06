@@ -163,7 +163,7 @@ class RenderHelper:
         # weatherText = '<div>Bilbao: ' +  weather['daily'][0]['weather']['main'] + '</div>\n'
         # weatherText += '<div>Max: ' + round(weather['daily'][0]['temp']['max']) + '°C</div>\n'
         # weatherText = '<div class="now">Now: ' + round(weather['current']['temp']) + '°C</div>\n'
-        weatherText = '<div class="now">Now: ' + 10 + '°C</div>\n'
+        weatherText = '<div class="now">Now: ' + str(10) + '°C</div>\n'
         # weatherText += '<div>Min: ' + round(weather['daily'][0]['temp']['min']) + '°C</div>\n'
 
         # Populate the day of week row
