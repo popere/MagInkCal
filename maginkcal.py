@@ -73,8 +73,6 @@ def main():
             weatherService = WeatherHelper(lat, lon, units)
             weather = weatherService.weather()
 
-            logger.info(weather)
-
         # Using Google Calendar to retrieve all events within start and end date (inclusive)
         start = dt.datetime.now()
         gcalService = GcalHelper()

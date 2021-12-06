@@ -14,11 +14,12 @@ class WeatherHelper:
             with open(self.currPath + '/api.key', 'r') as token:
                 apiKeyFile = token.read().replace('\n', '')
                 self.query = {'lat': lat, 'lon': lon, 'units': units, 'appid': apiKeyFile}
-                self.logger.info('weather initializedrecovered sucessfully')
+                self.logger.info('Weather initialization sucessfully')
 
     def weather(self):
         if self.query:
             weather = requests.get("https://api.openweathermap.org/data/2.5/onecall", params=self.query).json()
+            self.logger.info('Weather recovered sucessfully')
             return weather
         else:
             return None
