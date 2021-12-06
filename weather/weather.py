@@ -4,8 +4,6 @@ import pathlib
 import os.path
 import json
 
-
-
 class WeatherHelper:
 
     def __init__(self, lat, long, units):
@@ -16,7 +14,7 @@ class WeatherHelper:
             with open(self.currPath + '/api.key', 'r') as token:
                 apiKeyFile = token.read()
         self.logger.warn(apiKeyFile)
-        query = {'lat': lat, 'long': long, 'units': units, 'api': apiKeyFile}
+        query = {'lat': lat, 'long': long, 'units': units, 'appid': apiKeyFile}
         self.weather = requests.get("https://api.openweathermap.org/data/2.5/onecall", params=query).json()
         self.logger.warn('weather: ' + json.dumps(self.weather))
 
