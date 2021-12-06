@@ -158,12 +158,11 @@ class RenderHelper:
             battText = 'batteryHide'
 
         # Populate weather
-        # weather = calDict['weather']
-        # if (weather):
-        #   weatherText = '<div>Bilbao: ' +  weather['current']['weather']['main'] + '</div>\n'
-        #   weatherText += '<div>Max: ' + weather['daily'][0]['temp']['max'] + '°C</div>\n'
-        #   weatherText += '<div class="now">Now: ' + weather['current']['temp'] + '°C</div>\n'
-        #   weatherText += '<div>Min: ' + weather['daily'][0]['temp']['min'] + '°C</div>\n'
+        weather = calDict['weather']
+        weatherText = '<div>Bilbao: ' +  weather['current']['weather']['main'] + '</div>\n'
+        weatherText += '<div>Max: ' + weather['daily'][0]['temp']['max'] + '°C</div>\n'
+        weatherText += '<div class="now">Now: ' + weather['current']['temp'] + '°C</div>\n'
+        weatherText += '<div>Min: ' + weather['daily'][0]['temp']['min'] + '°C</div>\n'
 
         # Populate the day of week row
         cal_days_of_week = ''
@@ -210,7 +209,7 @@ class RenderHelper:
         # Append the bottom and write the file
         htmlFile = open(self.currPath + '/calendar.html', "w")
         htmlFile.write(calendar_template.format(month=month_name, battText=battText, dayOfWeek=cal_days_of_week,
-                                                events=cal_events_text))
+                                                events=cal_events_text, weather=weatherText))
         htmlFile.close()
 
         self.logger.info('HTML generated')
