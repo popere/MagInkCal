@@ -104,7 +104,7 @@ class RenderHelper:
         return datetime_str
 
     def process_inputs(self, calDict):
-        # calDict = {'events': eventList, 'calStartDate': calStartDate, 'today': currDate, 'lastRefresh': currDatetime, 'batteryLevel': batteryLevel}
+        # calDict = {'events': eventList, 'calStartDate': calStartDate, 'today': currDate, 'lastRefresh': currDatetime, 'batteryLevel': batteryLevel, 'weather' weather}
         # first setup list to represent the 5 weeks in our calendar
         calList = []
         for i in range(14):
@@ -157,6 +157,14 @@ class RenderHelper:
         elif batteryDisplayMode == 2 and battLevel >= 20.0:
             battText = 'batteryHide'
 
+        # Populate weather
+        weather = calDict['weather']
+        if (weather):
+          weatherText = '<div>Bilbao: ' +  weather['current']['weather']['main'] + '</div>\n'
+          weatherText += '<div>Max: ' + weather['daily'][0]['temp']['max'] + '°C</div>\n'
+          weatherText += '<div class="now">Now: ' + weather['current']['temp']+ '°C</div>\n'
+          weatherText += '<div>Min: ' + weather['daily'][0]['temp']['min'] + '°C</div>\n'
+
         # Populate the day of week row
         cal_days_of_week = ''
         for i in range(0, 7):
@@ -202,7 +210,7 @@ class RenderHelper:
         # Append the bottom and write the file
         htmlFile = open(self.currPath + '/calendar.html', "w")
         htmlFile.write(calendar_template.format(month=month_name, battText=battText, dayOfWeek=cal_days_of_week,
-                                                events=cal_events_text))
+                                                events=cal_events_text, weather=weather))
         htmlFile.close()
 
         calBlackImage, calRedImage = self.get_screenshot()

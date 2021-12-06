@@ -16,9 +16,9 @@ class WeatherHelper:
                 self.query = {'lat': lat, 'lon': lon, 'units': units, 'appid': apiKeyFile}
                 self.logger.info('weather initializedrecovered sucessfully')
 
-    def weatherDaily(self):
+    def weather(self):
         if self.query:
             weather = requests.get("https://api.openweathermap.org/data/2.5/onecall", params=self.query).json()
-            return weather['daily']
+            return weather
         else:
             return None

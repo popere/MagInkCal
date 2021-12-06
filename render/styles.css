@@ -202,6 +202,25 @@ Calendar Styling */
   color: #ddd;
 }
 
+div.weather_container {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  top: 5;
+  left: 650;
+  font-size: 2rem;
+  overflow: hidden;
+}
+
+div.weather_container  {
+  z-index: 10;
+}
+
+
+div.weather_container .now {
+  color: #ff0000;
+}
+
 div.batt_container {
   width: 53px;
   height: 27px;
