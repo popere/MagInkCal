@@ -10,6 +10,7 @@ CSS stylesheets in the "render" folder.
 """
 import datetime as dt
 import sys
+import pdb; pdb.set_trace()
 
 from pytz import timezone
 from gcal.gcal import GcalHelper
