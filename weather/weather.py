@@ -15,8 +15,8 @@ class WeatherHelper:
                 apiKeyFile = token.read().replace('\n', '')
         query = {'lat': lat, 'lon': lon, 'units': units, 'appid': apiKeyFile}
         self.logger.warn(json.dumps(query))
-        self.weather = requests.get("https://api.openweathermap.org/data/2.5/onecall", params=query).json()
-        self.logger.warn('weather: ' + json.dumps(self.weather))
+        self.weatherDaily = requests.get("https://api.openweathermap.org/data/2.5/onecall", params=query).json()
+        self.logger.warn('weather: ' + json.dumps(self.weatherDaily))
 
-    def weather(self):
-      return self.weather
+    def weatherDaily(self):
+      return self.weatherDaily['daily']
