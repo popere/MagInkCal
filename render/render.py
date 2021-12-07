@@ -210,6 +210,8 @@ class RenderHelper:
             cal_events_text += '</li>\n'
         cal_events_text += '</ol>\n'
 
+        print(cal_events_text)
+
         # Append the bottom and write the file
         htmlFile = open(self.currPath + '/calendar.html', "w")
         htmlFile.write(calendar_template.format(month=month_name, battText=battText, dayOfWeek=cal_days_of_week,
