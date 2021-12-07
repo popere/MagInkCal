@@ -115,6 +115,7 @@ class RenderHelper:
         dayOfWeekText = calDict['dayOfWeekText']
         weekStartDay = calDict['weekStartDay']
         is24hour = calDict['is24hour']
+        monthsText = calDict['monthsText']
 
         # for each item in the eventList, add them to the relevant day in our calendar list
         for event in calDict['events']:
@@ -131,7 +132,7 @@ class RenderHelper:
             calendar_template = file.read()
 
         # Insert month header
-        month_name = str(calDict['today'].month)
+        month_name = calDict['monthsText'][calDict['today'].month]
 
         # Insert battery icon
         # batteryDisplayMode - 0: do not show / 1: always show / 2: show when battery is low
@@ -197,7 +198,7 @@ class RenderHelper:
                 elif event['allday']:
                     cal_events_text += '"> ⚫' + event['summary']
                 else:
-                    cal_events_text += '"><div> ⚫' + self.get_short_time(event['startDatetime'], is24hour) + '</div><div> ' + event[
+                    cal_events_text += '"><div> ⚫' + self.get_short_time(event['startDatetime'], is24hour) + ' ' + event[
                         'summary'] + '</div>'
                 cal_events_text += '</div>\n'
             if len(calList[i]) > maxEventsPerDay:

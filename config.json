@@ -7,6 +7,7 @@
   "batteryDisplayMode": 0,
   "weekStartDay": 0,
   "dayOfWeekText": ["L", "M", "X", "J", "V", "S", "D"],
+  "monthsText": ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
   "screenWidth": 480,
   "screenHeight": 800,
   "imageWidth": 800,

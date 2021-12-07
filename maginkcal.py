@@ -42,6 +42,7 @@ def main():
     calendars = config['calendars']  # Google calendar ids
     is24hour = config['is24h']  # set 24 hour time
     weather = config['weather']  # weather (true / false)
+    monthsText = config['monthsText']  # name of months
     lat = config['lat']  # set lat for weather
     lon = config['lon']  # set long for weather
     units = config['units']  # set units for weather
@@ -86,7 +87,7 @@ def main():
       calDict = {'events': eventList, 'calStartDate': calStartDate, 'today': currDate, 'lastRefresh': currDatetime,
                   'batteryLevel': currBatteryLevel, 'batteryDisplayMode': batteryDisplayMode,
                   'dayOfWeekText': dayOfWeekText, 'weekStartDay': weekStartDay, 'maxEventsPerDay': maxEventsPerDay,
-                  'is24hour': is24hour , 'weather': weather}
+                  'is24hour': is24hour , 'weather': weather, 'monthsText': monthsText}
 
       renderService = RenderHelper(imageWidth, imageHeight, rotateAngle)
       calBlackImage, calRedImage = renderService.process_inputs(calDict)
