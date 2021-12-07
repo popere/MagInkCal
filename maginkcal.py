@@ -80,7 +80,7 @@ def main():
           weatherData = []
           for i in range(len(weather)):
               weatherService[i] = WeatherHelper(weather[i].lat, weather[i].lon, weather[i].units)
-              weatherData[i] = weatherService[i].weather()
+              weatherData[i] = weatherService[i].weather().json()
               weatherData[i]['city'] = weather[i].city
               weatherData[i]['daysWeather'] = weather[i].daysWeather
 
