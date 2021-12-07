@@ -167,8 +167,8 @@ Calendar Styling */
   /* font-family: "Judson-Regular";*/
   white-space: initial;
   /* overflow: hidden; */
-  overflow: initial;
-  text-overflow: clip;
+  overflow: hidden;
+  text-overflow: initial;
   border-radius: 0rem;
   margin-bottom: 1px;
 
