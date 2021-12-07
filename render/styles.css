@@ -195,6 +195,12 @@ div.weather_container {
   height: 100px;
   margin-bottom: 10px;
   display: flex;
+  flex-direction: row;
+}
+
+div.weather_container .icon {
+  margin-top: -20px;
+  margin-bottom: -20px;
 }
 
 div.weather_container .city {
