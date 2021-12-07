@@ -20,7 +20,7 @@
     "addressbook#contacts@group.v.calendar.google.com"
   ],
   "weather": true,
-  "daysWeather": ["Hoy", "Mañana", "Pasado"],
+  "daysWeather": ["Hoy", "Mañana", "Pasado", "Siguiente"],
   "city": "Bilbao",
   "lat": 43.262711,
   "lon": -2.92528,

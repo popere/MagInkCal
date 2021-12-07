@@ -219,6 +219,7 @@ div.weather_container .weather_days .weather_day_name{
 div.weather_container .now {
   right: 10px;
   color: #ff0000;
+  font-size: 3rem;
 }
 
 div.weather_container .icon {
