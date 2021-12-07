@@ -163,6 +163,7 @@ class RenderHelper:
         weatherText += '<div>Max: ' + str(round(weather['daily'][0]['temp']['max'])) + '°C</div>\n'
         weatherText += '<div class="now">Ahora: ' + str(round(weather['current']['temp'])) + '°C</div>\n'
         weatherText += '<div>Min: ' + str(round(weather['daily'][0]['temp']['min'])) + '°C</div>\n'
+        weatherText += '<div>Lluvia: ' + str(round(weather['daily'][0]['rain'])) + 'mm</div>\n'
 
         # Populate the day of week row
         cal_days_of_week = ''
