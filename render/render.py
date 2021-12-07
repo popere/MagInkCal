@@ -206,8 +206,6 @@ class RenderHelper:
                 cal_events_text += '<div class="event text-muted">' + str(len(calList[i]) - maxEventsPerDay) + ' more'
 
             cal_events_text += '</li>\n'
-            print(str(i))
-            print(str(((i + 1) % 7) == 0 and i != 1))
             if (((i+1) % 7) == 0 and i != 1) :
                 cal_events_text += '</ol>\n<ol class="days list-unstyled">\n'
         cal_events_text += '</ol>\n'
