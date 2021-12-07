@@ -56,66 +56,66 @@ def main():
     logger.setLevel(logging.INFO)
     logger.info("Starting daily calendar update")
 
-    try:
+    # try:
     
-      # Establish current date and time information
-      # Note: For Python datetime.weekday() - Monday = 0, Sunday = 6
-      # For this implementation, each week starts on a Sunday and the calendar begins on the nearest elapsed Sunday
-      # The calendar will also display 5 weeks of events to cover the upcoming month, ending on a Saturday
-      powerService = PowerHelper()
-      powerService.sync_time()
-      currBatteryLevel = powerService.get_battery()
-      logger.info('Battery level at start: {:.3f}'.format(currBatteryLevel))
+    # Establish current date and time information
+    # Note: For Python datetime.weekday() - Monday = 0, Sunday = 6
+    # For this implementation, each week starts on a Sunday and the calendar begins on the nearest elapsed Sunday
+    # The calendar will also display 5 weeks of events to cover the upcoming month, ending on a Saturday
+    powerService = PowerHelper()
+    powerService.sync_time()
+    currBatteryLevel = powerService.get_battery()
+    logger.info('Battery level at start: {:.3f}'.format(currBatteryLevel))
 
-      currDatetime = dt.datetime.now(displayTZ)
-      logger.info("Time synchronised to {}".format(currDatetime))
-      currDate = currDatetime.date()
-      calStartDate = currDate - dt.timedelta(days=((currDate.weekday() + (7 - weekStartDay)) % 7))
-      calEndDate = calStartDate + dt.timedelta(days=(4 * 7 - 1))
-      calStartDatetime = displayTZ.localize(dt.datetime.combine(calStartDate, dt.datetime.min.time()))
-      calEndDatetime = displayTZ.localize(dt.datetime.combine(calEndDate, dt.datetime.max.time()))
+    currDatetime = dt.datetime.now(displayTZ)
+    logger.info("Time synchronised to {}".format(currDatetime))
+    currDate = currDatetime.date()
+    calStartDate = currDate - dt.timedelta(days=((currDate.weekday() + (7 - weekStartDay)) % 7))
+    calEndDate = calStartDate + dt.timedelta(days=(4 * 7 - 1))
+    calStartDatetime = displayTZ.localize(dt.datetime.combine(calStartDate, dt.datetime.min.time()))
+    calEndDatetime = displayTZ.localize(dt.datetime.combine(calEndDate, dt.datetime.max.time()))
 
-      if (weather) :
-          weatherService = []
-          weatherData = []
-          for i in range(len(weather)):
-              weatherService[i] = WeatherHelper(weather[i]['lat'], weather[i]['lon'], weather[i]['units'])
-              weatherData[i] = weatherService[i].weather()
-              weatherData[i]['city'] = weather[i].city
-              weatherData[i]['daysWeather'] = weather[i].daysWeather
-              print(str(weatherData))
+    if (weather) :
+        weatherService = []
+        weatherData = []
+        for i in range(len(weather)):
+            weatherService[i] = WeatherHelper(weather[i]['lat'], weather[i]['lon'], weather[i]['units'])
+            weatherData[i] = weatherService[i].weather()
+            weatherData[i]['city'] = weather[i].city
+            weatherData[i]['daysWeather'] = weather[i].daysWeather
+            print(str(weatherData))
 
-      # Using Google Calendar to retrieve all events within start and end date (inclusive)
-      start = dt.datetime.now()
-      gcalService = GcalHelper()
-      eventList = gcalService.retrieve_events(calendars, calStartDatetime, calEndDatetime, displayTZ, thresholdHours)
-      logger.info("Calendar events retrieved in " + str(dt.datetime.now() - start))
+    # Using Google Calendar to retrieve all events within start and end date (inclusive)
+    start = dt.datetime.now()
+    gcalService = GcalHelper()
+    eventList = gcalService.retrieve_events(calendars, calStartDatetime, calEndDatetime, displayTZ, thresholdHours)
+    logger.info("Calendar events retrieved in " + str(dt.datetime.now() - start))
 
-      # Populate dictionary with information to be rendered on e-ink display
-      calDict = {'events': eventList, 'calStartDate': calStartDate, 'today': currDate, 'lastRefresh': currDatetime,
-                  'batteryLevel': currBatteryLevel, 'batteryDisplayMode': batteryDisplayMode,
-                  'dayOfWeekText': dayOfWeekText, 'weekStartDay': weekStartDay, 'maxEventsPerDay': maxEventsPerDay,
-                  'is24hour': is24hour , 'weather': weatherData, 'monthsText': monthsText}
+    # Populate dictionary with information to be rendered on e-ink display
+    calDict = {'events': eventList, 'calStartDate': calStartDate, 'today': currDate, 'lastRefresh': currDatetime,
+                'batteryLevel': currBatteryLevel, 'batteryDisplayMode': batteryDisplayMode,
+                'dayOfWeekText': dayOfWeekText, 'weekStartDay': weekStartDay, 'maxEventsPerDay': maxEventsPerDay,
+                'is24hour': is24hour , 'weather': weatherData, 'monthsText': monthsText}
 
-      renderService = RenderHelper(imageWidth, imageHeight, rotateAngle)
-      calBlackImage, calRedImage = renderService.process_inputs(calDict)
+    renderService = RenderHelper(imageWidth, imageHeight, rotateAngle)
+    calBlackImage, calRedImage = renderService.process_inputs(calDict)
 
 
-      if isDisplayToScreen:
-          from display.display import DisplayHelper
-          displayService = DisplayHelper(screenWidth, screenHeight)
-          if currDate.weekday() == weekStartDay:
-              # calibrate display once a week to prevent ghosting
-              logger.info('calibrate')
-              displayService.calibrate(cycles=0)  # to calibrate in production
-          displayService.update(calBlackImage, calRedImage)
-          displayService.sleep()
+    if isDisplayToScreen:
+        from display.display import DisplayHelper
+        displayService = DisplayHelper(screenWidth, screenHeight)
+        if currDate.weekday() == weekStartDay:
+            # calibrate display once a week to prevent ghosting
+            logger.info('calibrate')
+            displayService.calibrate(cycles=0)  # to calibrate in production
+        displayService.update(calBlackImage, calRedImage)
+        displayService.sleep()
 
-      currBatteryLevel = powerService.get_battery()
-      logger.info('Battery level at end: {:.3f}'.format(currBatteryLevel))
+    currBatteryLevel = powerService.get_battery()
+    logger.info('Battery level at end: {:.3f}'.format(currBatteryLevel))
 
-    except Exception as e:
-        logger.error(e)
+    # except Exception as e:
+    #     logger.error(e)
 
     logger.info("Completed daily calendar update")
 
