@@ -83,6 +83,7 @@ def main():
               weatherData[i] = weatherService[i].weather().json()
               weatherData[i]['city'] = weather[i].city
               weatherData[i]['daysWeather'] = weather[i].daysWeather
+              print(str(weatherData))
 
       # Using Google Calendar to retrieve all events within start and end date (inclusive)
       start = dt.datetime.now()
