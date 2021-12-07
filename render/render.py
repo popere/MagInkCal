@@ -161,7 +161,7 @@ class RenderHelper:
         weather = calDict['weather']
         weatherText = '<span>Bilbao <span class="now">' + str(round(weather['current']['temp'])) + '°C</span></span>\n'
         weatherText += '<span><img class="icon" src="http://openweathermap.org/img/wn/' + weather['daily'][0]['weather'][0]['icon'] +'@2x.png"></img></span>\n'
-        weatherText += '<span>' + str(round(weather['daily'][0]['temp']['max'])) + '°C / ' + str(round(weather['daily'][0]['temp']['min'])) + '°C</span>\n'
+        weatherText += '<span>' + str(round(weather['daily'][0]['temp']['max'])) + '°C / ' + str(round(weather['daily'][0]['temp']['min'])) + '°C </span>\n'
         weatherText += '<span>' + str(round(weather['daily'][0]['rain'])) + 'mm</div>\n'
 
         # Populate the day of week row
