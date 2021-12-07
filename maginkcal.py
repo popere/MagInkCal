@@ -11,7 +11,6 @@ CSS stylesheets in the "render" folder.
 import datetime as dt
 import sys
 
-from emoji import emojize
 from pytz import timezone
 from gcal.gcal import GcalHelper
 from render.render import RenderHelper
@@ -52,7 +51,7 @@ def main():
     logger = logging.getLogger('maginkcal')
     logger.addHandler(logging.StreamHandler(sys.stdout))  # print logger to stdout
     logger.setLevel(logging.INFO)
-    logger.info(emojize(':simple_smile:') + "Starting daily calendar update")
+    logger.info("Starting daily calendar update")
 
     try:
     
