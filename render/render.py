@@ -132,7 +132,7 @@ class RenderHelper:
             calendar_template = file.read()
 
         # Insert month header
-        month_name = calDict['monthsText'][calDict['today'].month]
+        month_name = calDict['monthsText'][calDict['today'].month - 1]
 
         # Insert battery icon
         # batteryDisplayMode - 0: do not show / 1: always show / 2: show when battery is low
