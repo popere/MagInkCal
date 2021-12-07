@@ -194,9 +194,19 @@ div.weather_container {
   width: 100%;
   height: 100px;
   margin-bottom: 10px;
+  display: flex;
+}
+
+div.weather_container .city {
+  font-size: 2rem;
+}
+
+div.weather_container .weather_days {
+  display:flex;
 }
 
 div.weather_container .now {
+  right: 10px;
   color: #ff0000;
 }
 

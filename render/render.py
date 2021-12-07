@@ -116,6 +116,8 @@ class RenderHelper:
         weekStartDay = calDict['weekStartDay']
         is24hour = calDict['is24hour']
         monthsText = calDict['monthsText']
+        city = calDict['city']
+        daysWeather = calDict['daysWeather']
 
         # for each item in the eventList, add them to the relevant day in our calendar list
         for event in calDict['events']:
@@ -132,7 +134,7 @@ class RenderHelper:
             calendar_template = file.read()
 
         # Insert month header
-        month_name = calDict['monthsText'][calDict['today'].month - 1]
+        month_name = monthsText[calDict['today'].month - 1]
 
         # Insert battery icon
         # batteryDisplayMode - 0: do not show / 1: always show / 2: show when battery is low
@@ -159,10 +161,17 @@ class RenderHelper:
 
         # Populate weather
         weather = calDict['weather']
-        weatherText = '<span>Bilbao <span class="now">' + str(round(weather['current']['temp'])) + '°C</span></span>\n'
-        weatherText += '<span><img class="icon" src="http://openweathermap.org/img/wn/' + weather['daily'][0]['weather'][0]['icon'] +'@2x.png"></img></span>\n'
-        weatherText += '<span>' + str(round(weather['daily'][0]['temp']['max'])) + '°C / ' + str(round(weather['daily'][0]['temp']['min'])) + '°C </span>\n'
-        weatherText += '<span>' + str(round(weather['daily'][0]['rain'])) + 'mm</span>\n'
+        weatherText = '<div><div class="city">' + city + '</div><div class="now">' + str(round(weather['current']['temp'])) + '°C</div></div>\n'
+        weatherText += '<div class="weather-days">'
+        for i in range(len(daysWeather)): 
+          weatherText += '<div class="weather-day>\n'
+          
+          weatherText += '<p class="weather-day-name">' + daysWeather[i] + '</p>\n'
+          weatherText += '<img class="icon" src="http://openweathermap.org/img/wn/' + weather['daily'][i]['weather'][0]['icon'] +'@2x.png"></img>\n'
+          weatherText += '<div>' + str(round(weather['daily'][i]['temp']['max'])) + '°C / ' + str(round(weather['daily'][0]['temp']['min'])) + '°C </div>\n'
+          weatherText += '<div>' + str(round(weather['daily'][i]['rain'])) + 'mm</div>\n'
+          weatherText += '<div>\n'
+        weatherText += '</div>\n'
 
         # Populate the day of week row
         cal_days_of_week = ''
