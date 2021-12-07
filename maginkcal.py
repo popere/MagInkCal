@@ -18,6 +18,7 @@ from power.power import PowerHelper
 from weather.weather import WeatherHelper
 import json
 import logging
+import emoji
 
 
 
@@ -51,7 +52,7 @@ def main():
     logger = logging.getLogger('maginkcal')
     logger.addHandler(logging.StreamHandler(sys.stdout))  # print logger to stdout
     logger.setLevel(logging.INFO)
-    logger.info("Starting daily calendar update")
+    logger.info(emoji.emojize(':simple_smile:') + "Starting daily calendar update")
 
     try:
     
