@@ -203,6 +203,7 @@ div.weather_container .city {
 
 div.weather_container .weather_days {
   display:flex;
+  flex-direction: row;
 }
 
 div.weather_container .now {
