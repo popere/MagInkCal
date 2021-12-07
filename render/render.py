@@ -168,8 +168,8 @@ class RenderHelper:
           weatherText += '<div class="weather_days align-items-center">'
           for j in range(len(w['daysWeather'])): 
             weatherText += '<div class="weather_day text-center">\n'
-            
-            weatherText += '<p class="weather_day_name">' + w['daysWeather'][j] + '</p>\n'
+            if (i == 0 ):
+              weatherText += '<p class="weather_day_name">' + w['daysWeather'][j] + '</p>\n'
             weatherText += '<img class="icon" src="http://openweathermap.org/img/wn/' + weather['daily'][j]['weather'][0]['icon'] +'@2x.png"></img>\n'
             weatherText += '<div>' + str(round(weather['daily'][j]['temp']['max'])) + '°C / ' + str(round(weather['daily'][j]['temp']['min'])) + '°C </div>\n'
             weatherText += '<div>💧 ' + str(round(weather['daily'][j]['rain'])) + 'mm</div>\n'
