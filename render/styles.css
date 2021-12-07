@@ -165,7 +165,7 @@ Calendar Styling */
   padding: 0.1rem;
   /* color: black; */
   /* font-family: "Judson-Regular";*/
-  white-space: pre;
+  white-space: initial;
   /* overflow: hidden; */
   overflow: initial;
   text-overflow: initial;
@@ -175,7 +175,7 @@ Calendar Styling */
 }
 
 .calendar .days li .event.span-2 {
-  width: 200%;
+  width: 150%;
 }
 
 .text-multiday {
