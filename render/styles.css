@@ -117,11 +117,6 @@ Calendar Styling */
   margin-bottom: 0.2rem;
 }
 
-.calendar .days li {
-  /* min-height: 12rem; */
-  min-height: 11.5rem;
-}
-
 .calendar .days li .date {
   margin: 0.5rem 0;
   line-height: 1.0;

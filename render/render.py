@@ -171,8 +171,10 @@ class RenderHelper:
                 (i + weekStartDay) % 7] + "</li>\n"
 
         # Populate the date and events
-        cal_events_text = ''
+        cal_events_text = '<ol class="days list-unstyled">\n'
         for i in range(len(calList)):
+            if (i % 6 == 0 & i != 0) :
+                cal_events_text += '</ol>\n<ol class="days list-unstyled">\n'
             currDate = calDict['calStartDate'] + timedelta(days=i)
             dayOfMonth = currDate.day
             if currDate == calDict['today']:
@@ -205,6 +207,7 @@ class RenderHelper:
                 cal_events_text += '<div class="event text-muted">' + str(len(calList[i]) - maxEventsPerDay) + ' more'
 
             cal_events_text += '</li>\n'
+        cal_events_text += '</ol>\n'
 
         # Append the bottom and write the file
         htmlFile = open(self.currPath + '/calendar.html', "w")
