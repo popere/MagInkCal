@@ -207,7 +207,7 @@ div.weather_container {
   height: 400px;
   position: absolute;
   top: 10;
-  right: 10;
+  left: 10;
   font-size: 1.5rem;
   overflow: hidden;
 }
