@@ -79,7 +79,6 @@ def main():
         weatherService = []
         weatherData = []
         for i in range(len(weather)):
-            weatherService[i] = WeatherHelper(weather[i]['lat'], weather[i]['lon'], weather[i]['units'])
             weatherData.append(weatherService[i].weather())
             weatherData[i]['city'] = weather[i].city
             weatherData[i]['daysWeather'] = weather[i].daysWeather
