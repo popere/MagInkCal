@@ -18,6 +18,7 @@ from datetime import timedelta
 import pathlib
 from PIL import Image
 import logging
+import emoji
 
 
 class RenderHelper:
@@ -161,8 +162,8 @@ class RenderHelper:
         weather = calDict['weather']
         weatherText = '<div>Bilbao <span class="now">' + str(round(weather['current']['temp'])) + '°C</span></div>\n'
         weatherText += '<div><img class="icon" src="http://openweathermap.org/img/wn/' + weather['daily'][0]['weather'][0]['icon'] +'@2x.png"></img></div>\n'
-        weatherText += '<div>🔺' + str(round(weather['daily'][0]['temp']['max'])) + '°C  🔻' + str(round(weather['daily'][0]['temp']['min'])) + '°C</div>\n'
-        weatherText += '<div>💧 ' + str(round(weather['daily'][0]['rain'])) + 'mm</div>\n'
+        weatherText += '<div>' + emoji.emojize(':arrow_up:') + str(round(weather['daily'][0]['temp']['max'])) + '°C ' + emoji.emojize(':arrow_down:') + str(round(weather['daily'][0]['temp']['min'])) + '°C</div>\n'
+        weatherText += '<div>' + emoji.emojize(':droplet:') + str(round(weather['daily'][0]['rain'])) + 'mm</div>\n'
 
         # Populate the day of week row
         cal_days_of_week = ''
