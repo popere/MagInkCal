@@ -160,18 +160,23 @@ class RenderHelper:
             battText = 'batteryHide'
 
         # Populate weather
-        weather = calDict['weather']
-        weatherText = '<div><div class="city">' + city + '</div><div class="now">' + str(round(weather['current']['temp'])) + '°C</div></div>\n'
-        weatherText += '<div class="weather_days align-items-center">'
-        for i in range(len(daysWeather)): 
-          weatherText += '<div class="weather_day text-center">\n'
-          
-          weatherText += '<p class="weather_day_name">' + daysWeather[i] + '</p>\n'
-          weatherText += '<img class="icon" src="http://openweathermap.org/img/wn/' + weather['daily'][i]['weather'][0]['icon'] +'@2x.png"></img>\n'
-          weatherText += '<div>' + str(round(weather['daily'][i]['temp']['max'])) + '°C / ' + str(round(weather['daily'][0]['temp']['min'])) + '°C </div>\n'
-          weatherText += '<div>💧 ' + str(round(weather['daily'][i]['rain'])) + 'mm</div>\n'
+        weathers = calDict['weather']
+        weatherText = ''
+        for i in range(len(weathers)):
+          weather = weathers[i]
+          weatherText += '<div class="weather_container"></div>\n'
+          weatherText += '<div><div class="city">' + city + '</div><div class="now">' + str(round(weather['current']['temp'])) + '°C</div></div>\n'
+          weatherText += '<div class="weather_days align-items-center">'
+          for j in range(len(weather.daysWeather)): 
+            weatherText += '<div class="weather_day text-center">\n'
+            
+            weatherText += '<p class="weather_day_name">' + weather.daysWeather[j] + '</p>\n'
+            weatherText += '<img class="icon" src="http://openweathermap.org/img/wn/' + weather['daily'][i]['weather'][0]['icon'] +'@2x.png"></img>\n'
+            weatherText += '<div>' + str(round(weather['daily'][j]['temp']['max'])) + '°C / ' + str(round(weather['daily'][j]['temp']['min'])) + '°C </div>\n'
+            weatherText += '<div>💧 ' + str(round(weather['daily'][j]['rain'])) + 'mm</div>\n'
+            weatherText += '</div>\n'
           weatherText += '</div>\n'
-        weatherText += '</div>\n'
+          weatherText += '</div>\n'
 
         # Populate the day of week row
         cal_days_of_week = ''

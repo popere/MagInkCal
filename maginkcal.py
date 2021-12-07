@@ -41,13 +41,13 @@ def main():
     rotateAngle = config['rotateAngle']  # If image is rendered in portrait orientation, angle to rotate to fit screen
     calendars = config['calendars']  # Google calendar ids
     is24hour = config['is24h']  # set 24 hour time
-    weather = config['weather']  # weather (true / false)
-    daysWeather = config['daysWeather']  # days to take weather
-    city = config['city']  # city to take weather
     monthsText = config['monthsText']  # name of months
-    lat = config['lat']  # set lat for weather
-    lon = config['lon']  # set long for weather
-    units = config['units']  # set units for weather
+    weather = config['weather']  # weather complex element
+    # daysWeather = config['daysWeather']  # days to take weather
+    # city = config['city']  # city to take weather
+    # lat = config['lat']  # set lat for weather
+    # lon = config['lon']  # set long for weather
+    # units = config['units']  # set units for weather
 
     # Create and configure logger
     logging.basicConfig(filename="logfile.log", format='%(asctime)s %(levelname)s - %(message)s', filemode='a')
@@ -76,8 +76,13 @@ def main():
       calEndDatetime = displayTZ.localize(dt.datetime.combine(calEndDate, dt.datetime.max.time()))
 
       if (weather) :
-          weatherService = WeatherHelper(lat, lon, units)
-          weather = weatherService.weather()
+          weatherService = range(weather)
+          weatherData = range(weather)
+          for i in range(weather):
+              weatherService[i] = WeatherHelper(weather[i].lat, weather[i].lon, weather[i].units)
+              weatherData[i] = weatherService[i].weather()
+              weatherData[i]['city'] = weather[i].city
+              weatherData[i]['daysWeather'] = weather[i].daysWeather
 
       # Using Google Calendar to retrieve all events within start and end date (inclusive)
       start = dt.datetime.now()
@@ -89,7 +94,7 @@ def main():
       calDict = {'events': eventList, 'calStartDate': calStartDate, 'today': currDate, 'lastRefresh': currDatetime,
                   'batteryLevel': currBatteryLevel, 'batteryDisplayMode': batteryDisplayMode,
                   'dayOfWeekText': dayOfWeekText, 'weekStartDay': weekStartDay, 'maxEventsPerDay': maxEventsPerDay,
-                  'is24hour': is24hour , 'weather': weather, 'monthsText': monthsText, 'city': city, 'daysWeather': daysWeather}
+                  'is24hour': is24hour , 'weather': weatherData, 'monthsText': monthsText}
 
       renderService = RenderHelper(imageWidth, imageHeight, rotateAngle)
       calBlackImage, calRedImage = renderService.process_inputs(calDict)
