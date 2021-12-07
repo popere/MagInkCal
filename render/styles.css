@@ -171,8 +171,6 @@ Calendar Styling */
   text-overflow: initial;
   border-radius: 0rem;
   margin-bottom: 1px;
-  width: 100%;
-
 }
 
 .calendar .days li .event.span-2 {
@@ -220,6 +218,11 @@ div.weather_container  {
 
 div.weather_container .now {
   color: #ff0000;
+}
+
+div.weather_container .icon {
+  width: 25px;
+  height: 25px;
 }
 
 div.batt_container {

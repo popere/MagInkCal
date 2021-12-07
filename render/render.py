@@ -159,7 +159,7 @@ class RenderHelper:
 
         # Populate weather
         weather = calDict['weather']
-        weatherText = '<div>Bilbao: ' +  weather['daily'][0]['weather'][0]['main'] + '</div>\n'
+        weatherText = '<div>Bilbao: <img class="icon" src="http://openweathermap.org/img/wn/' + weather['daily'][0]['weather'][0]['icon'] +' @2x.png'  '"></img></div>\n'
         weatherText += '<div>Max: ' + str(round(weather['daily'][0]['temp']['max'])) + '°C</div>\n'
         weatherText += '<div class="now">Ahora: ' + str(round(weather['current']['temp'])) + '°C</div>\n'
         weatherText += '<div>Min: ' + str(round(weather['daily'][0]['temp']['min'])) + '°C</div>\n'
