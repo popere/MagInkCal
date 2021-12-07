@@ -80,7 +80,8 @@ def main():
         weatherData = []
         for i in range(len(weather)):
             weatherService.append(WeatherHelper(weather[i]['lat'], weather[i]['lon'], weather[i]['units']))
-            weatherData.append(weatherService[i].weather().update({'city': weather[i].city, 'daysWeather': weather[i].daysWeather}))
+            w = {'weather': weatherService[i].weather(), 'city': weather[i].city, 'daysWeather': weather[i].days}
+            weatherData.append(w)
             print(str(weatherData))
 
     # Using Google Calendar to retrieve all events within start and end date (inclusive)
