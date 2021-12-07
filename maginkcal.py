@@ -82,7 +82,6 @@ def main():
             weatherService.append(WeatherHelper(weather[i]['lat'], weather[i]['lon'], weather[i]['units']))
             w = {'weather': weatherService[i].weather(), 'city': weather[i]['city'], 'daysWeather': weather[i]['daysWeather']}
             weatherData.append(w)
-            print(str(weatherData))
 
     # Using Google Calendar to retrieve all events within start and end date (inclusive)
     start = dt.datetime.now()
@@ -94,7 +93,7 @@ def main():
     calDict = {'events': eventList, 'calStartDate': calStartDate, 'today': currDate, 'lastRefresh': currDatetime,
                 'batteryLevel': currBatteryLevel, 'batteryDisplayMode': batteryDisplayMode,
                 'dayOfWeekText': dayOfWeekText, 'weekStartDay': weekStartDay, 'maxEventsPerDay': maxEventsPerDay,
-                'is24hour': is24hour , 'weather': weatherData, 'monthsText': monthsText}
+                'is24hour': is24hour , 'weathers': weatherData, 'monthsText': monthsText}
 
     renderService = RenderHelper(imageWidth, imageHeight, rotateAngle)
     calBlackImage, calRedImage = renderService.process_inputs(calDict)
