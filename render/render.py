@@ -163,7 +163,7 @@ class RenderHelper:
         for i in range(len(weathers)):
           w = weathers[i]
           weather = weathers[i]['weather']
-          weatherText += '<div class="weather_container"></div>\n'
+          weatherText += '<div class="weather_container">\n'
           weatherText += '<div><div class="city">' + w['city'] + '</div><div class="now">' + str(round(weather['current']['temp'])) + '°C</div></div>\n'
           weatherText += '<div class="weather_days align-items-center">'
           for j in range(len(w['daysWeather'])): 
