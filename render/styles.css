@@ -199,8 +199,8 @@ div.weather_container {
 }
 
 div.weather_container .icon {
-  margin-top: -20px;
-  margin-bottom: -20px;
+  margin-top: -40px;
+  margin-bottom: -40px;
 }
 
 div.weather_container .city {
