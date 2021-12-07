@@ -175,7 +175,7 @@ Calendar Styling */
 }
 
 .calendar .days li .event.span-2 {
-  width: 150%;
+  width: 100%;
 }
 
 .text-multiday {
