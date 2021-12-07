@@ -200,7 +200,7 @@ div.weather_container {
 
 div.weather_container .icon {
   margin-top: -40px;
-  margin-bottom: -30px;
+  margin-bottom: -25px;
 }
 
 div.weather_container .city {
@@ -219,7 +219,7 @@ div.weather_container .weather_days .weather_day_name{
 div.weather_container .now {
   right: 10px;
   color: #ff0000;
-  font-size: 3rem;
+  font-size: 2.5rem;
 }
 
 div.weather_container .icon {
