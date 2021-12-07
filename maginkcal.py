@@ -42,12 +42,12 @@ def main():
     calendars = config['calendars']  # Google calendar ids
     is24hour = config['is24h']  # set 24 hour time
     monthsText = config['monthsText']  # name of months
-    weather = config['weather']  # weather complex element
-    # daysWeather = config['daysWeather']  # days to take weather
-    # city = config['city']  # city to take weather
-    # lat = config['lat']  # set lat for weather
-    # lon = config['lon']  # set long for weather
-    # units = config['units']  # set units for weather
+    weather = config['weather']  # weather complex element with elements:
+      # daysWeather = config['daysWeather']  # days to take weather
+      # city = config['city']  # city to take weather
+      # lat = config['lat']  # set lat for weather
+      # lon = config['lon']  # set long for weather
+      # units = config['units']  # set units for weather
 
     # Create and configure logger
     logging.basicConfig(filename="logfile.log", format='%(asctime)s %(levelname)s - %(message)s', filemode='a')

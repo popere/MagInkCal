@@ -116,8 +116,6 @@ class RenderHelper:
         weekStartDay = calDict['weekStartDay']
         is24hour = calDict['is24hour']
         monthsText = calDict['monthsText']
-        city = calDict['city']
-        daysWeather = calDict['daysWeather']
 
         # for each item in the eventList, add them to the relevant day in our calendar list
         for event in calDict['events']:
