@@ -173,7 +173,7 @@ class RenderHelper:
         # Populate the date and events
         cal_events_text = '<ol class="days list-unstyled">\n'
         for i in range(len(calList)):
-            if (i % 6 == 0 & i != 0) :
+            if ((i % 6) == 0 & i != 0) :
                 cal_events_text += '</ol>\n<ol class="days list-unstyled">\n'
             currDate = calDict['calStartDate'] + timedelta(days=i)
             dayOfMonth = currDate.day
