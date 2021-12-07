@@ -76,9 +76,9 @@ def main():
       calEndDatetime = displayTZ.localize(dt.datetime.combine(calEndDate, dt.datetime.max.time()))
 
       if (weather) :
-          weatherService = range(weather)
-          weatherData = range(weather)
-          for i in range(weather):
+          weatherService = []
+          weatherData = []
+          for i in range(len(weather)):
               weatherService[i] = WeatherHelper(weather[i].lat, weather[i].lon, weather[i].units)
               weatherData[i] = weatherService[i].weather()
               weatherData[i]['city'] = weather[i].city
