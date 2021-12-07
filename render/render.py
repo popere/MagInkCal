@@ -205,6 +205,8 @@ class RenderHelper:
                     else:
                         # calHtmlList.append(' text-multiday">')
                         cal_events_text += '">◄' + event['summary']
+                elif event['allday'] and (' - Cumpleaños' in event['summary']):
+                    cal_events_text += '"> 🎂' + event['summary'].replace(' - Cumpleaños', '')
                 elif event['allday']:
                     cal_events_text += '"> ⚫' + event['summary']
                 else:
