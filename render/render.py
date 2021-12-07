@@ -162,11 +162,11 @@ class RenderHelper:
         # Populate weather
         weather = calDict['weather']
         weatherText = '<div><div class="city">' + city + '</div><div class="now">' + str(round(weather['current']['temp'])) + '°C</div></div>\n'
-        weatherText += '<div class="weather-days align-items-center">'
+        weatherText += '<div class="weather_days align-items-center">'
         for i in range(len(daysWeather)): 
-          weatherText += '<div class="weather-day text-center">\n'
+          weatherText += '<div class="weather_day text-center">\n'
           
-          weatherText += '<p class="weather-day-name">' + daysWeather[i] + '</p>\n'
+          weatherText += '<p class="weather_day_name">' + daysWeather[i] + '</p>\n'
           weatherText += '<img class="icon" src="http://openweathermap.org/img/wn/' + weather['daily'][i]['weather'][0]['icon'] +'@2x.png"></img>\n'
           weatherText += '<div>' + str(round(weather['daily'][i]['temp']['max'])) + '°C / ' + str(round(weather['daily'][0]['temp']['min'])) + '°C </div>\n'
           weatherText += '<div>' + str(round(weather['daily'][i]['rain'])) + 'mm</div>\n'

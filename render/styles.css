@@ -200,7 +200,7 @@ div.weather_container {
 
 div.weather_container .icon {
   margin-top: -40px;
-  margin-bottom: -40px;
+  margin-bottom: -30px;
 }
 
 div.weather_container .city {
@@ -210,6 +210,10 @@ div.weather_container .city {
 div.weather_container .weather_days {
   display:flex;
   flex-direction: row;
+}
+
+div.weather_container .weather_days .weather_day_name{
+  font-size: 1 rem;
 }
 
 div.weather_container .now {
