@@ -164,7 +164,7 @@ class RenderHelper:
         weatherText = '<div><div class="city">' + city + '</div><div class="now">' + str(round(weather['current']['temp'])) + '°C</div></div>\n'
         weatherText += '<div class="weather-days">'
         for i in range(len(daysWeather)): 
-          weatherText += '<div class="weather-day>\n'
+          weatherText += '<div class="weather-day">\n'
           
           weatherText += '<p class="weather-day-name">' + daysWeather[i] + '</p>\n'
           weatherText += '<img class="icon" src="http://openweathermap.org/img/wn/' + weather['daily'][i]['weather'][0]['icon'] +'@2x.png"></img>\n'
