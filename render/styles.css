@@ -204,7 +204,7 @@ Calendar Styling */
 
 div.weather_container {
   width: 160px;
-  height: 200px;
+  height: 400px;
   position: absolute;
   top: 5;
   left: 320;
