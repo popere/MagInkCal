@@ -168,7 +168,7 @@ Calendar Styling */
   white-space: initial;
   /* overflow: hidden; */
   overflow: initial;
-  text-overflow: initial;
+  text-overflow: clip;
   border-radius: 0rem;
   margin-bottom: 1px;
 
