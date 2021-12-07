@@ -169,7 +169,7 @@ class RenderHelper:
           weatherText += '<p class="weather_day_name">' + daysWeather[i] + '</p>\n'
           weatherText += '<img class="icon" src="http://openweathermap.org/img/wn/' + weather['daily'][i]['weather'][0]['icon'] +'@2x.png"></img>\n'
           weatherText += '<div>' + str(round(weather['daily'][i]['temp']['max'])) + '°C / ' + str(round(weather['daily'][0]['temp']['min'])) + '°C </div>\n'
-          weatherText += '<div>' + str(round(weather['daily'][i]['rain'])) + 'mm</div>\n'
+          weatherText += '<div>💧 ' + str(round(weather['daily'][i]['rain'])) + 'mm</div>\n'
           weatherText += '</div>\n'
         weatherText += '</div>\n'
 
