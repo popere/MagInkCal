@@ -173,11 +173,8 @@ class RenderHelper:
             weatherText += '<img class="icon" src="http://openweathermap.org/img/wn/' + weather['daily'][j]['weather'][0]['icon'] +'@2x.png"></img>\n'
             weatherText += '<div>' + str(round(weather['daily'][j]['temp']['max'])) + '°C / ' + str(round(weather['daily'][j]['temp']['min'])) + '°C </div>\n'
             print(weather['daily'][j])
-            print('snow: ' + str(getattr(weather['daily'][j], 'snow', 0)))
-            print(hasattr(weather['daily'][j], 'snow'))
-            print('rain: ' + str(getattr(weather['daily'][j], 'rain', 0)))
-            print(hasattr(weather['daily'][j], 'rain'))
-            if (getattr(weather['daily'][j], 'snow', 0) != 0):
+            print('snow' in weather['daily'][j])
+            if (('snow' in weather['daily'][j]) and weather['daily'][j]['swnow'] != 0):
               weatherText += '<div>💧/❄️ ' + str(round(weather['daily'][j]['rain'])) + '/' + str(round(weather['daily'][j]['snow'])) + 'mm</div>\n'
             else:
               weatherText += '<div>💧 ' + str(round(weather['daily'][j]['rain'])) + 'mm</div>\n'
