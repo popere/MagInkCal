@@ -213,11 +213,11 @@ div.weather_container .weather_days {
 }
 
 div.weather_container .weather_days .weather_day_name{
-  font-size: 1 rem;
+  font-size: 1rem;
 }
 
 div.weather_container .weather_days .weather_day .snow{
-  font-size: 0.8 rem !important;
+  font-size: 0.8rem !important;
 }
 
 div.weather_container .now {
