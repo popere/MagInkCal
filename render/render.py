@@ -201,6 +201,7 @@ class RenderHelper:
 
             for j in range(min(len(calList[i]), maxEventsPerDay)):
                 event = calList[i][j]
+                event['summary'] = event['summary'].replace('Pádel', '🎾').replace('Padel', '🎾').replace('padel', '🎾').replace('pádel', '🎾')
                 cal_events_text += '<div class="event'
                 if event['isUpdated']:
                     cal_events_text += ' text-danger'
@@ -219,10 +220,9 @@ class RenderHelper:
                 elif event['allday'] and ('Vacaciones' in event['summary']):
                     cal_events_text += '"> 🏖️ ' + event['summary'].replace('Vacaciones ', 'Vacas')
                 elif event['allday']:
-                    cal_events_text += '"> - ' + event['summary'].replace('Pádel', '🎾').replace('padel', '🎾').replace('Padel', '🎾')
+                    cal_events_text += '"> - ' + event['summary']
                 else:
-                    cal_events_text += '"><div> - ' + self.get_short_time(event['startDatetime'], is24hour) + ' ' + event[
-                        'summary'] + '</div>'
+                    cal_events_text += '"><div> - ' + self.get_short_time(event['startDatetime'], is24hour) + ' ' + event['summary'] + '</div>'
                 cal_events_text += '</div>\n'
             if len(calList[i]) > maxEventsPerDay:
                 cal_events_text += '<div class="event text-muted">' + str(len(calList[i]) - maxEventsPerDay) + ' more'
