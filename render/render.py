@@ -213,11 +213,11 @@ class RenderHelper:
                         # calHtmlList.append(' text-multiday">')
                         cal_events_text += '">◄' + event['summary']
                 elif event['allday'] and (' - Cumpleaños' in event['summary']):
-                    cal_events_text += '"> 🎁' + event['summary'].replace(' - Cumpleaños', '')
+                    cal_events_text += '"> 🎁 ' + event['summary'].replace(' - Cumpleaños', '')
                 elif event['allday'] and (('Guardia' in event['summary']) or ('Pase de planta' in event['summary']) or ('Tarde' in event['summary'])):
-                    cal_events_text += '"> 🏥' + event['summary'].replace('Pase de planta ', '').replace('Residente', 'Resi')
+                    cal_events_text += '"> 🏥 ' + event['summary'].replace('Pase de planta ', '').replace('Residente', 'Resi')
                 elif event['allday'] and ('Vacaciones' in event['summary']):
-                    cal_events_text += '"> 🏖️' + event['summary'].replace('Vacaciones ', 'Vacas')
+                    cal_events_text += '"> 🏖️ ' + event['summary'].replace('Vacaciones ', 'Vacas')
                 elif event['allday']:
                     cal_events_text += '"> - ' + event['summary'].replace('Padel', '🎾').replace('Pádel', '🎾')
                 else:
