@@ -219,7 +219,7 @@ class RenderHelper:
                 elif event['allday'] and ('Vacaciones' in event['summary']):
                     cal_events_text += '"> 🏖️ ' + event['summary'].replace('Vacaciones ', 'Vacas')
                 elif event['allday']:
-                    cal_events_text += '"> - ' + event['summary'].replace('Padel', '🎾').replace('Pádel', '🎾')
+                    cal_events_text += '"> - ' + event['summary'].replace('Pádel', '🎾').replace('padel', '🎾').replace('Padel', '🎾')
                 else:
                     cal_events_text += '"><div> - ' + self.get_short_time(event['startDatetime'], is24hour) + ' ' + event[
                         'summary'] + '</div>'
