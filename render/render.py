@@ -174,6 +174,9 @@ class RenderHelper:
             weatherText += '<div>' + str(round(weather['daily'][j]['temp']['max'])) + '°C / ' + str(round(weather['daily'][j]['temp']['min'])) + '°C </div>\n'
             print(weather['daily'][j])
             print('snow: ' + str(getattr(weather['daily'][j], 'snow', 0)))
+            print(hasattr(weather['daily'][j], 'snow', 0))
+            print('rain: ' + str(getattr(weather['daily'][j], 'rain', 0)))
+            print(hasattr(weather['daily'][j], 'rain', 0))
             if (getattr(weather['daily'][j], 'snow', 0) != 0):
               weatherText += '<div>💧/❄️ ' + str(round(weather['daily'][j]['rain'])) + '/' + str(round(weather['daily'][j]['snow'])) + 'mm</div>\n'
             else:
