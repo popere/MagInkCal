@@ -78,6 +78,11 @@ class RenderHelper:
         blackimg = blackimg.rotate(self.rotateAngle, expand=True)
 
         self.logger.info('Image colours processed. Extracted grayscale and red images.')
+        
+        newImg = Image.new(redimg.mode, redimg.size)
+        newImg.putdata(rpixels)
+        newImg.save('new.jpg')
+        
         return blackimg, redimg
 
     def get_day_in_cal(self, startDate, eventDate):
