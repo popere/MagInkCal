@@ -19,8 +19,8 @@ def launch():
     speech_text = 'Welcome to the Raspberry Pi alexa automation.'
     return question(speech_text).reprompt(speech_text).simple_card(speech_text)
  
-@ask.intent('Calendar', mapping = {'status':'status'})
-def Calendar(status,room):
+@ask.intent('Calendar')
+def Calendar():
     # if status in STATUSMAGINKCALENDAR:
     #     return statement('Light was turned on')
     # elif status in STATUSOFF:
