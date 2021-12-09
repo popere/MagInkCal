@@ -80,7 +80,7 @@ class RenderHelper:
         self.logger.info('Image colours processed. Extracted grayscale and red images.')
         
 
-        redimg.save('red.jpg')
+        redimg.save('red.png')
 
         return blackimg, redimg
 
