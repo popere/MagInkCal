@@ -19,17 +19,19 @@ def launch():
     speech_text = 'Welcome to the Raspberry Pi alexa automation.'
     return question(speech_text).reprompt(speech_text).simple_card(speech_text)
  
-@ask.intent('LightIntent', mapping = {'status':'status'})
+@ask.intent('Calendar', mapping = {'status':'status'})
 def Calendar(status,room):
-    if status in STATUSMAGINKCALENDAR:
-        return statement('Light was turned on')
-    elif status in STATUSOFF:
-        return statement('Light was turned off')
-    elif status in STATUSMAGINKCALENDAR:
-        main()
-        return statement('Cuadro ha sido acutalizado')
-    else:
-        return statement('Sorry, this command is not possible.')
+    # if status in STATUSMAGINKCALENDAR:
+    #     return statement('Light was turned on')
+    # elif status in STATUSOFF:
+    #     return statement('Light was turned off')
+    # elif status in STATUSMAGINKCALENDAR:
+    #     main()
+    #     return statement('Cuadro ha sido acutalizado')
+    # else:
+    #     return statement('Sorry, this command is not possible.')
+    main()
+    return statement('Cuadro ha sido actualizado')
  
 @ask.intent('AMAZON.HelpIntent')
 def help():
