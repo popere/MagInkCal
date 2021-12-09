@@ -79,10 +79,9 @@ class RenderHelper:
 
         self.logger.info('Image colours processed. Extracted grayscale and red images.')
         
-        newImg = Image.new(redimg.mode, redimg.size)
-        newImg.putdata(rpixels)
-        newImg.save('new.jpg')
-        
+
+        redimg.save('red.jpg')
+
         return blackimg, redimg
 
     def get_day_in_cal(self, startDate, eventDate):
