@@ -4,7 +4,7 @@ import os
 from flask import Flask
 from flask_ask import Ask, request, session, question, statement
 
-import maginkcal;
+from maginkcal import main;
  
 app = Flask(__name__)
 ask = Ask(app, "/")
@@ -26,7 +26,7 @@ def Calendar(status,room):
     elif status in STATUSOFF:
         return statement('Light was turned off')
     elif status in STATUSMAGINKCALENDAR:
-        maginkcal.main()
+        main()
         return statement('Cuadro ha sido acutalizado')
     else:
         return statement('Sorry, this command is not possible.')
