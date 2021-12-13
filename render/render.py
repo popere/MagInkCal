@@ -234,9 +234,6 @@ class RenderHelper:
             if (((i+1) % 7) == 0 and i != 1) :
                 cal_events_text += '</ol>\n<ol class="days list-unstyled">\n'
         cal_events_text += '</ol>\n'
-        print('calDict[today]')
-        print(calDict['today'])
-        print(datetime.now())
         lastUpdateTime = self.get_short_time(datetime.now(), is24hour)
 
 
