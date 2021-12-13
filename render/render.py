@@ -235,11 +235,13 @@ class RenderHelper:
                 cal_events_text += '</ol>\n<ol class="days list-unstyled">\n'
         cal_events_text += '</ol>\n'
 
+        lastUpdateTime = self.get_short_time(calDict['today'], is24hour)
+
 
         # Append the bottom and write the file
         htmlFile = open(self.currPath + '/calendar.html', "w")
         htmlFile.write(calendar_template.format(month=month_name, battText=battText, dayOfWeek=cal_days_of_week,
-                                                events=cal_events_text, weather=weatherText))
+                                                events=cal_events_text, weather=weatherText, lastUpdateTime=lastUpdateTime))
         htmlFile.close()
 
         self.logger.info('HTML generated')
