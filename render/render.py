@@ -14,7 +14,7 @@ RPi device, while using a ESP32 or PiZero purely to just retrieve the image from
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from time import sleep
-from datetime import timedelta
+from datetime import datetime, timedelta
 import pathlib
 from PIL import Image
 import logging
@@ -236,7 +236,8 @@ class RenderHelper:
         cal_events_text += '</ol>\n'
         print('calDict[today]')
         print(calDict['today'])
-        lastUpdateTime = self.get_short_time(calDict['today'], is24hour)
+        print(datetime())
+        lastUpdateTime = self.get_short_time(datetime(), is24hour)
 
 
         # Append the bottom and write the file
