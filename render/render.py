@@ -236,8 +236,8 @@ class RenderHelper:
         cal_events_text += '</ol>\n'
         print('calDict[today]')
         print(calDict['today'])
-        print(datetime())
-        lastUpdateTime = self.get_short_time(datetime(), is24hour)
+        print(datetime.now())
+        lastUpdateTime = self.get_short_time(datetime.now(), is24hour)
 
 
         # Append the bottom and write the file
