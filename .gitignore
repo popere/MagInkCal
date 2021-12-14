@@ -8,6 +8,8 @@ render/calendar.png
 
 weather/api.key
 
+*.service
+
 #intellij config
 .idea/
 
