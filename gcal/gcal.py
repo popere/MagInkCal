@@ -110,7 +110,8 @@ class GcalHelper:
         for event in events:
             # extracting and converting events data into a new list
             newEvent = {}
-            newEvent['summary'] = event['summary']
+            if ('summary' in event):
+                newEvent['summary'] = event['summary']
 
             if event['start'].get('dateTime') is None:
                 newEvent['allday'] = True
