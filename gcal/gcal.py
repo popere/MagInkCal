@@ -112,6 +112,8 @@ class GcalHelper:
             newEvent = {}
             if ('summary' in event):
                 newEvent['summary'] = event['summary']
+            else:
+                newEvent['summary'] = ''
 
             if event['start'].get('dateTime') is None:
                 newEvent['allday'] = True
