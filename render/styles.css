@@ -236,8 +236,8 @@ div.weather_container .now {
 }
 
 div.weather_container .icon {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
 }
 
 div.batt_container {
