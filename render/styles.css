@@ -229,6 +229,10 @@ div.weather_container .weather_days .weather_day .snow{
   font-size: 0.8rem !important;
 }
 
+div.weather_container .weather_days .weather_day .no_rain{
+  height: 1rem;
+}
+
 div.weather_container .now {
   right: 10px;
   color: #ff0000;
