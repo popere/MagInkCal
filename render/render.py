@@ -181,6 +181,8 @@ class RenderHelper:
               weatherText += '<div>❄️ ' + str(round(weather['daily'][j]['snow'])) + 'mm</div>\n'
             elif (('rain' in weather['daily'][j]) and weather['daily'][j]['rain'] != 0):
               weatherText += '<div>💧 ' + str(round(weather['daily'][j]['rain'])) + 'mm</div>\n'
+            else:
+              weatherText += '<div>No llueve</div>\n'
             weatherText += '</div>\n'
           weatherText += '</div>\n'
           weatherText += '</div>\n'
