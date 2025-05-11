@@ -75,9 +75,9 @@ def main():
     calStartDatetime = displayTZ.localize(dt.datetime.combine(calStartDate, dt.datetime.min.time()))
     calEndDatetime = displayTZ.localize(dt.datetime.combine(calEndDate, dt.datetime.max.time()))
 
+    weatherData = []
     if (weather) :
         weatherService = []
-        weatherData = []
         for i in range(len(weather)):
             weatherService.append(WeatherHelper(weather[i]['lat'], weather[i]['lon'], weather[i]['units']))
             w = {'weather': weatherService[i].weather(), 'city': weather[i]['city'], 'daysWeather': weather[i]['daysWeather']}
@@ -91,10 +91,20 @@ def main():
     logger.info("Calendar events retrieved in " + str(dt.datetime.now() - start))
 
     # Populate dictionary with information to be rendered on e-ink display
-    calDict = {'events': eventList, 'calStartDate': calStartDate, 'today': currDate, 'lastRefresh': currDatetime,
-                'batteryLevel': currBatteryLevel, 'batteryDisplayMode': batteryDisplayMode,
-                'dayOfWeekText': dayOfWeekText, 'weekStartDay': weekStartDay, 'maxEventsPerDay': maxEventsPerDay,
-                'is24hour': is24hour , 'weathers': weatherData, 'monthsText': monthsText}
+    calDict = {
+      'events': eventList,
+      'calStartDate': calStartDate,
+      'today': currDate,
+      'lastRefresh': currDatetime,
+      'batteryLevel': currBatteryLevel,
+      'batteryDisplayMode': batteryDisplayMode,
+      'dayOfWeekText': dayOfWeekText,
+      'weekStartDay': weekStartDay,
+      'maxEventsPerDay': maxEventsPerDay,
+      'is24hour': is24hour,
+      'weathers': weatherData if weatherData else None,
+      'monthsText': monthsText
+    }
 
     renderService = RenderHelper(imageWidth, imageHeight, rotateAngle)
     print(renderService)
