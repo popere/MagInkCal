@@ -102,7 +102,7 @@ def main():
       'weekStartDay': weekStartDay,
       'maxEventsPerDay': maxEventsPerDay,
       'is24hour': is24hour,
-      'weathers': weatherData if weatherData else None,
+      'weathers': weatherData if len(weatherData) > 0 else None,
       'monthsText': monthsText
     }
 
