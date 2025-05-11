@@ -159,7 +159,7 @@ class RenderHelper:
             battText = 'batteryHide'
 
         # Populate weather
-        if (calDict.get('weathers') is None):
+        if (calDict.get('weathers') is not None):
           weathers = calDict['weathers']
           weatherText = ''
           for i in range(len(weathers)):
