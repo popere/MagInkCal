@@ -42,11 +42,11 @@ def main():
     calendars = config['calendars']  # Google calendar ids
     is24hour = config['is24h']  # set 24 hour time
     monthsText = config['monthsText']  # name of months
-    weather = config['weather']  # weather complex element with elements:
+    weather = config.get('weather', False)  # weather complex element with elements, default to False if not present
       # daysWeather = config['daysWeather']  # days to take weather
-      # city = config['city']  # city to take weather
       # lat = config['lat']  # set lat for weather
       # lon = config['lon']  # set long for weather
+      # city = config['city']  # city to take weather
       # units = config['units']  # set units for weather
 
     # Create and configure logger
@@ -82,6 +82,7 @@ def main():
             weatherService.append(WeatherHelper(weather[i]['lat'], weather[i]['lon'], weather[i]['units']))
             w = {'weather': weatherService[i].weather(), 'city': weather[i]['city'], 'daysWeather': weather[i]['daysWeather']}
             weatherData.append(w)
+        print(weatherData)
 
     # Using Google Calendar to retrieve all events within start and end date (inclusive)
     start = dt.datetime.now()
@@ -96,6 +97,7 @@ def main():
                 'is24hour': is24hour , 'weathers': weatherData, 'monthsText': monthsText}
 
     renderService = RenderHelper(imageWidth, imageHeight, rotateAngle)
+    print(renderService)
     calBlackImage, calRedImage = renderService.process_inputs(calDict)
 
 
