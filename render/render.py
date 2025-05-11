@@ -75,7 +75,11 @@ class RenderHelper:
         # Procesar los píxeles
         for i in range(img.size[0]):  # Recorrer ancho
             for j in range(img.size[1]):  # Recorrer alto
-                r, g, b = pixels[i, j]  # Obtener valores RGB del píxel
+                pixel = pixels[i, j]
+                if len(pixel) == 4:  # Si el píxel tiene un canal alfa
+                    r, g, b, a = pixel
+                else:  # Si el píxel solo tiene R, G, B
+                    r, g, b = pixel
 
                 # Condición para identificar píxeles rojos
                 if r > g + 10 and r > b + 10:  # Más estricta para evitar píxeles ambiguos
