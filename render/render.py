@@ -76,6 +76,7 @@ class RenderHelper:
 
         redimg = redimg.rotate(self.rotateAngle, expand=True)
         blackimg = blackimg.rotate(self.rotateAngle, expand=True)
+        
 
         self.logger.info('Image colours processed. Extracted grayscale and red images.')
 
