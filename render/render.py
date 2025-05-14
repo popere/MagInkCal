@@ -61,43 +61,21 @@ class RenderHelper:
 
         self.logger.info('Screenshot captured and saved to file.')
 
-        # Cargar la imagen una sola vez
-        img = Image.open(self.currPath + '/calendar.png')
-        pixels = img.load()  # Mapa de píxeles
+        redimg = Image.open(self.currPath + '/calendar.png')  # get image)
+        rpixels = redimg.load()  # create the pixel map
+        blackimg = Image.open(self.currPath + '/calendar.png')  # get image)
+        bpixels = blackimg.load()  # create the pixel map
 
-        # Crear copias para las imágenes roja y negra
-        redimg = img.copy()
-        rpixels = redimg.load()
+        for i in range(redimg.size[0]):  # loop through every pixel in the image
+            for j in range(redimg.size[1]): # since both bitmaps are identical, cycle only once and not both bitmaps
+                if rpixels[i, j][0] <= rpixels[i, j][1] and rpixels[i, j][0] <= rpixels[i, j][2]:  # if is not red
+                    rpixels[i, j] = (255, 255, 255)  # change it to white in the red image bitmap
 
-        blackimg = img.copy()
-        bpixels = blackimg.load()
+                elif bpixels[i, j][0] > bpixels[i, j][1] and bpixels[i, j][0] > bpixels[i, j][2]:  # if is red
+                    bpixels[i, j] = (255, 255, 255)  # change to white in the black image bitmap
 
-        # Procesar los píxeles
-        for i in range(img.size[0]):  # Recorrer ancho
-            for j in range(img.size[1]):  # Recorrer alto
-                pixel = pixels[i, j]
-                if len(pixel) == 4:  # Si el píxel tiene un canal alfa
-                    r, g, b, a = pixel
-                else:  # Si el píxel solo tiene R, G, B
-                    r, g, b = pixel
-
-                # Condición para identificar píxeles rojos
-                if r > g + 10 and r > b + 10:  # Más estricta para evitar píxeles ambiguos
-                    rpixels[i, j] = (r, g, b)  # Mantener el color original en la imagen roja
-                    bpixels[i, j] = (255, 255, 255)  # Hacer blanco en la imagen negra
-                else:
-                    rpixels[i, j] = (255, 255, 255)  # Hacer blanco en la imagen roja
-
-                # Condición para identificar píxeles negros
-                if r < 50 and g < 50 and b < 50:  # Píxeles oscuros
-                    bpixels[i, j] = (r, g, b)  # Mantener el color original en la imagen negra
-                else:
-                    bpixels[i, j] = (255, 255, 255)  # Hacer blanco en la imagen negra
-
-        # Rotar las imágenes
         redimg = redimg.rotate(self.rotateAngle, expand=True)
         blackimg = blackimg.rotate(self.rotateAngle, expand=True)
-        
 
         self.logger.info('Image colours processed. Extracted grayscale and red images.')
 
