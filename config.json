@@ -7,34 +7,34 @@
   "batteryDisplayMode": 0,
   "weekStartDay": 0,
   "dayOfWeekText": ["L", "M", "X", "J", "V", "S", "D"],
-  "monthsText": ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+  "monthsText": [
+    "Enero",
+    "Febrero",
+    "Marzo",
+    "Abril",
+    "Mayo",
+    "Junio",
+    "Julio",
+    "Agosto",
+    "Septiembre",
+    "Octubre",
+    "Noviembre",
+    "Diciembre"
+  ],
   "screenWidth": 800,
   "screenHeight": 8480,
   "imageWidth": 480,
   "imageHeight": 800,
   "rotateAngle": 270,
   "is24h": false,
-  "calendars": [
-    "primary",
-    "alicianarro33@gmail.com",
-    "addressbook#contacts@group.v.calendar.google.com"
-  ],
+  "calendars": ["primary", "alicianarro33@gmail.com"],
   "weather": [
     {
-      "daysWeather": ["Hoy", "Mañana", "Pasado", "Siguiente"],
-      "city": "Bilbao",
-      "lat": 43.262711,
-      "lon": -2.92528,
-      "units": "metric"
-    },
-    {
-      "daysWeather": ["Hoy", "Mañana", "Pasado", "Siguiente"],
+      "daysWeather": ["Hoy", "Mañana", "Pasado"],
       "city": "Vitoria",
       "lat": 42.849998,
       "lon": -2.683333,
       "units": "metric"
     }
-
   ]
-  
 }

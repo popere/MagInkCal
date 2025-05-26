@@ -6,80 +6,86 @@
 *
 */
 .clearfix::after,
-
 :root {
-    --red: #dc3545;
-    --white: #fff;
-    --gray: #6c757d;
-    --gray-dark: #343a40;
+  --red: #dc3545;
+  --white: #fff;
+  --gray: #6c757d;
+  --gray-dark: #343a40;
 }
 
 .text-uppercase {
-    text-transform: uppercase!important;
+  text-transform: uppercase !important;
 }
 
-.mb-0, .my-0 {
-    margin-top: 0;
-    margin-bottom: 0!important;
+.mb-0,
+.my-0 {
+  margin-top: 0;
+  margin-bottom: 0 !important;
 }
 
 .p-3 {
-    padding: 1rem!important;
+  padding: 1rem !important;
 }
 
 .text-center {
-    text-align: center!important;
+  text-align: center !important;
 }
 
 .list-unstyled {
-    padding-left: 0;
-    list-style: none;
-    margin-bottom: 0;
+  padding-left: 0;
+  list-style: none;
+  margin-bottom: 0;
 }
 
 .font-weight-bold {
-    font-weight: 700!important;
+  font-weight: 700 !important;
 }
 
 .text-muted {
-    color: #6c757d!important;
+  color: #6c757d !important;
 }
 
-dl, ol, ul {
-    margin-top: 0;
-    margin-bottom: 1rem;
+dl,
+ol,
+ul {
+  margin-top: 0;
+  margin-bottom: 1rem;
 }
 
 body {
-    margin: 0;
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #212529;
-    text-align: left;
-    background-color: #fff;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: left;
+  background-color: #fff;
 }
 
 @font-face {
-    font-family: "Quattrocento-Bold";
-    src: url('Quattrocento-Bold.ttf');
+  font-family: "Quattrocento-Bold";
+  src: url("Quattrocento-Bold.ttf");
 }
 
 @font-face {
-    font-family: "Quattrocento-Regular";
-    src: url('Quattrocento-Regular.ttf');
+  font-family: "Quattrocento-Regular";
+  src: url("Quattrocento-Regular.ttf");
 }
 
 .container {
-    width: 100%;
-    padding: 0!important;
-    margin: 0!important;
-    max-width: 984px;
-    height: 1304px;
+  width: 100%;
+  padding: 0 !important;
+  margin: 0 !important;
+  max-width: 984px;
+  height: 1304px;
 }
-*, ::after, ::before {
-    box-sizing: border-box;
+*,
+::after,
+::before {
+  box-sizing: border-box;
 }
 .calendar ol::after {
   content: ".";
@@ -109,7 +115,6 @@ Calendar Styling */
   font-size: 3rem;
   line-height: 1.2;
   font-family: "Quattrocento-Regular";
-
 }
 
 .calendar .day-names li {
@@ -120,7 +125,7 @@ Calendar Styling */
 
 .calendar .days li .date {
   margin: 0.5rem 0;
-  line-height: 1.0;
+  line-height: 1;
 }
 
 .calendar .date {
@@ -131,21 +136,21 @@ Calendar Styling */
 }
 
 .datecirclebox {
-    position: relative;
+  position: relative;
 }
 
 .datecircle {
-    margin: 0rem auto;
-    width:4rem;
-    height:4rem;
-    border-radius:2rem;
-    font-family: "Quattrocento-Regular";
-    font-size:3rem;
-    color:white;
-    line-height: 4rem;
-    text-align:center;
-    vertical-align: middle;
-    background:#ff0000;
+  margin: 0rem auto;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 2rem;
+  font-family: "Quattrocento-Regular";
+  font-size: 3rem;
+  color: white;
+  line-height: 4rem;
+  text-align: center;
+  vertical-align: middle;
+  background: #ff0000;
 }
 
 .calendar .days li .event {
@@ -167,7 +172,7 @@ Calendar Styling */
 }
 
 .text-multiday {
-  text-overflow: '...」'!important;
+  text-overflow: "...」" !important;
 }
 
 .calendar .days li .event.begin {
@@ -182,7 +187,7 @@ Calendar Styling */
   background: none;
 }
 
-.calendar .days li:nth-child(n+29) {
+.calendar .days li:nth-child(n + 29) {
   border-bottom: none;
 }
 
@@ -208,8 +213,8 @@ div.weather_container {
 }
 
 div.weather_container .icon {
-  margin-top: -40px;
-  margin-bottom: -25px;
+  margin-top: -26px;
+  margin-bottom: -4px;
 }
 
 div.weather_container .city {
@@ -217,19 +222,19 @@ div.weather_container .city {
 }
 
 div.weather_container .weather_days {
-  display:flex;
+  display: flex;
   flex-direction: row;
 }
 
-div.weather_container .weather_days .weather_day_name{
+div.weather_container .weather_days .weather_day_name {
   font-size: 1rem;
 }
 
-div.weather_container .weather_days .weather_day .snow{
+div.weather_container .weather_days .weather_day .snow {
   font-size: 0.8rem !important;
 }
 
-div.weather_container .weather_days .weather_day .no_rain{
+div.weather_container .weather_days .weather_day .no_rain {
   height: 1.2rem;
 }
 
@@ -240,8 +245,8 @@ div.weather_container .now {
 }
 
 div.weather_container .icon {
-  width: 80px;
-  height: 80px;
+  width: 40px;
+  height: 40px;
 }
 
 div.batt_container {
@@ -253,7 +258,7 @@ div.batt_container {
   overflow: hidden;
 }
 
-div.batt_container  {
+div.batt_container {
   z-index: 10;
 }
 
@@ -288,7 +293,7 @@ div.batt_container .battery0 {
 }
 
 div.batt_container .batteryHide {
-    display: none;
+  display: none;
 }
 
 /*

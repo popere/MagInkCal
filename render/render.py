@@ -166,22 +166,22 @@ class RenderHelper:
             w = weathers[i]
             weather = weathers[i]['weather']
             weatherText += '<div class="weather_container">\n'
-            weatherText += '<div><div class="city">' + w['city'] + '</div><div class="now align-items-center">' + str(round(weather['current']['temp'])) + '°C</div></div>\n'
+            weatherText += '<div><div class="city">' + w['city'] + '</div><div class="now align-items-center">' + str(round(weather['current']['temp_c'])) + '°C</div></div>\n'
             weatherText += '<div class="weather_days align-items-center">'
             for j in range(len(w['daysWeather'])): 
               weatherText += '<div class="weather_day text-center">\n'
               if (i == 0 ):
                 weatherText += '<p class="weather_day_name">' + w['daysWeather'][j] + '</p>\n'
-              weatherText += '<img class="icon" src="http://openweathermap.org/img/wn/' + weather['daily'][j]['weather'][0]['icon'] +'@2x.png"></img>\n'
-              weatherText += '<div>' + str(round(weather['daily'][j]['temp']['max'])) + '°C / ' + str(round(weather['daily'][j]['temp']['min'])) + '°C </div>\n'
-              if (('wind_speed' in weather['daily'][j]) and weather['daily'][j]['wind_speed'] != 0):
-                weatherText += '<div>🍃 ' + str(round(weather['daily'][j]['wind_speed'])) + 'm/s</div>\n'
-              if (('snow' in weather['daily'][j]) and weather['daily'][j]['snow'] != 0 and ('rain' in weather['daily'][j]) and weather['daily'][j]['rain'] != 0):
-                weatherText += '<div class="snow">💧/❄️ ' + str(round(weather['daily'][j]['rain'])) + ' / ' + str(round(weather['daily'][j]['snow'])) + 'mm</div>\n'
-              elif (('snow' in weather['daily'][j]) and weather['daily'][j]['snow'] != 0):
-                weatherText += '<div>❄️ ' + str(round(weather['daily'][j]['snow'])) + 'mm</div>\n'
-              elif (('rain' in weather['daily'][j]) and weather['daily'][j]['rain'] != 0):
-                weatherText += '<div>💧 ' + str(round(weather['daily'][j]['rain'])) + 'mm</div>\n'
+              weatherText += '<img class="icon" src="https:' + weather['forecast']['forecastday'][j]['day']['condition']['icon'] + '"></img>\n'
+              weatherText += '<div>' + str(round(weather['forecast']['forecastday'][j]['day']['maxtemp_c'])) + '°C / ' + str(round(weather['forecast']['forecastday'][j]['day']['mintemp_c'])) + '°C </div>\n'
+              if (('maxwind_kph' in weather['forecast']['forecastday'][j]['day']) and weather['forecast']['forecastday'][j]['day']['maxwind_kph'] != 0):
+                weatherText += '<div>🍃 ' + str(round(weather['forecast']['forecastday'][j]['day']['maxwind_kph'])) + 'km/h</div>\n'
+              if ((weather['forecast']['forecastday'][j]['day']['daily_will_it_snow'] == 1) and weather['forecast']['forecastday'][j]['day']['totalsnow_cm'] != 0 and (weather['forecast']['forecastday'][j]['day']['daily_will_it_rain'] == 1) and weather['forecast']['forecastday'][j]['day']['totalprecip_mm'] != 0):
+                weatherText += '<div class="snow">💧/❄️ ' + str(round(weather['forecast']['forecastday'][j]['day']['totalprecip_mm'])) + ' mm / ' + str(round(weather['forecast']['forecastday'][j]['day']['totalsnow_cm'])) + 'cm</div>\n'
+              elif ((weather['forecast']['forecastday'][j]['day']['daily_will_it_snow'] == 1) and weather['forecast']['forecastday'][j]['day']['totalsnow_cm'] != 0):
+                weatherText += '<div>❄️ ' + str(round(weather['forecast']['forecastday'][j]['day']['totalsnow_cm'])) + 'mm</div>\n'
+              elif ((weather['forecast']['forecastday'][j]['day']['daily_will_it_rain'] == 1) and weather['forecast']['forecastday'][j]['day']['totalprecip_mm'] != 0):
+                weatherText += '<div>💧 ' + str(round(weather['forecast']['forecastday'][j]['day']['totalprecip_mm'])) + 'mm</div>\n'
               else:
                 weatherText += '<div class="no_rain"></div>\n'
               weatherText += '</div>\n'

@@ -79,7 +79,7 @@ def main():
     if (weather) :
         weatherService = []
         for i in range(len(weather)):
-            weatherService.append(WeatherHelper(weather[i]['lat'], weather[i]['lon'], weather[i]['units']))
+            weatherService.append(WeatherHelper(weather[i]['lat'], weather[i]['lon'], len(weather[i]['daysWeather'])))
             w = {'weather': weatherService[i].weather(), 'city': weather[i]['city'], 'daysWeather': weather[i]['daysWeather']}
             weatherData.append(w)
         print(weatherData)
