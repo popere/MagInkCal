@@ -33,8 +33,7 @@
       "daysWeather": ["Hoy", "Mañana", "Pasado"],
       "city": "Vitoria",
       "lat": 42.849998,
-      "lon": -2.683333,
-      "units": "metric"
+      "lon": -2.683333
     }
   ]
 }
