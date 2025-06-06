@@ -211,6 +211,10 @@ div.weather_container {
   display: flex;
   flex-direction: row;
 }
+div.weather_container > div:first-child {
+  /* Este es el bloque de ciudad y temperatura */
+  flex: 0 0 auto; /* Solo ocupa lo que necesita */
+}
 
 div.weather_container .icon {
   margin-top: -26px;
@@ -221,9 +225,20 @@ div.weather_container .city {
   font-size: 2rem;
 }
 
+div.weather_container > div:first-child {
+  /* Este es el bloque de ciudad y temperatura */
+  flex: 0 0 auto; /* Solo ocupa lo que necesita */
+}
+
 div.weather_container .weather_days {
+  flex: 1 1 0%; /* Ocupa el resto del espacio disponible */
   display: flex;
   flex-direction: row;
+}
+
+div.weather_container .weather_days .weather_day {
+  flex: 1 1 0%; /* Cada día ocupa el mismo ancho dentro de weather_days */
+  min-width: 0; /* Permite que se reduzca si es necesario */
 }
 
 div.weather_container .weather_days .weather_day_name {
