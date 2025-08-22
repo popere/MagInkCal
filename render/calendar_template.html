@@ -1,13 +1,14 @@
 <html>
-<head>
-    <link rel="stylesheet" href="bootstrap.min.css">
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-<div class="last-update-time">{lastUpdateTime}</div>
-<div class="container p-0 m-0">
-    <!-- Calendar -->
-    <div class="calendar shadow bg-white p-3">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="bootstrap.min.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="last-update-time">{lastUpdateTime}</div>
+    <div class="container p-0 m-0">
+      <!-- Calendar -->
+      <div class="calendar shadow bg-white p-3">
         <!-- Last update hour -->
         <!-- Weather -->
         <div>{weather}</div>
@@ -16,12 +17,16 @@
           <h3 class="month font-weight-bold mb-0 text-uppercase">{month}</h3>
         </div>
         <!-- Battery -->
-        <div class="batt_container"><img class="{battText}" src="battery.png" /></div>
+        <div class="batt_container">
+          <img class="{battText}" src="battery.png" />
+        </div>
         <!-- Days of week -->
-        <ol class="day-names list-unstyled text-center">{dayOfWeek}</ol>
+        <ol class="day-names list-unstyled text-center">
+          {dayOfWeek}
+        </ol>
         <!-- Calendar and events -->
         <div>{events}</div>
+      </div>
     </div>
-</div>
-</body>
+  </body>
 </html>

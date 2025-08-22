@@ -10,69 +10,56 @@ format the calendar exactly the way I want it using HTML/CSS, and (ii) I can bet
 calendar and refreshing of the eInk display. In the future, I might choose to generate the calendar on a separate
 RPi device, while using a ESP32 or PiZero purely to just retrieve the image from a file host and update the screen.
 """
-
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+import subprocess
 from time import sleep
 from datetime import datetime, timedelta
-import pathlib
 from PIL import Image
 import logging
+import pathlib
 
 class RenderHelper:
 
     def __init__(self, width, height, angle):
         self.logger = logging.getLogger('maginkcal')
         self.currPath = str(pathlib.Path(__file__).parent.absolute())
-        self.htmlFile = 'file://' + self.currPath + '/calendar.html'
+        self.htmlFile = self.currPath + '/calendar.html'
         self.imageWidth = width
         self.imageHeight = height
         self.rotateAngle = angle
 
-    def set_viewport_size(self, driver):
-
-        # Extract the current window size from the driver
-        current_window_size = driver.get_window_size()
-
-        # Extract the client window size from the html tag
-        html = driver.find_element('tag name','html')
-        inner_width = int(html.get_attribute("clientWidth"))
-        inner_height = int(html.get_attribute("clientHeight"))
-
-        # "Internal width you want to set+Set "outer frame width" to window size
-        target_width = self.imageWidth + (current_window_size["width"] - inner_width)
-        target_height = self.imageHeight + (current_window_size["height"] - inner_height)
-
-        driver.set_window_rect(
-            width=target_width,
-            height=target_height)
-
     def get_screenshot(self):
-        opts = Options()
-        opts.add_argument("--headless")
-        opts.add_argument("--hide-scrollbars");
-        opts.add_argument('--force-device-scale-factor=1')
-        driver = webdriver.Chrome(options=opts)
-        self.set_viewport_size(driver)
-        driver.get(self.htmlFile)
-        sleep(1)
-        driver.get_screenshot_as_file(self.currPath + '/calendar.png')
-        driver.quit()
+        output_file = self.currPath + '/calendar.png'
 
-        self.logger.info('Screenshot captured and saved to file.')
+        # Usamos wkhtmltoimage para renderizar el HTML a PNG
+        try:
+            subprocess.run([
+                "wkhtmltoimage",
+                "--enable-local-file-access",
+            "--disable-smart-width",
+            "--width", str(self.imageWidth),
+            "--height", str(self.imageHeight),
+            "--crop-w", str(self.imageWidth),
+            "--crop-h", str(self.imageHeight),
+                self.htmlFile,
+                output_file
+            ], check=True)
+            self.logger.info(f'Screenshot captured and saved to {output_file}')
+        except subprocess.CalledProcessError as e:
+            self.logger.error(f'Error running wkhtmltoimage: {e}')
+            raise
 
-        redimg = Image.open(self.currPath + '/calendar.png')  # get image)
-        rpixels = redimg.load()  # create the pixel map
-        blackimg = Image.open(self.currPath + '/calendar.png')  # get image)
-        bpixels = blackimg.load()  # create the pixel map
+        # Procesamos la imagen igual que antes
+        redimg = Image.open(output_file)
+        rpixels = redimg.load()
+        blackimg = Image.open(output_file)
+        bpixels = blackimg.load()
 
-        for i in range(redimg.size[0]):  # loop through every pixel in the image
-            for j in range(redimg.size[1]): # since both bitmaps are identical, cycle only once and not both bitmaps
-                if rpixels[i, j][0] <= rpixels[i, j][1] and rpixels[i, j][0] <= rpixels[i, j][2]:  # if is not red
-                    rpixels[i, j] = (255, 255, 255)  # change it to white in the red image bitmap
-
-                elif bpixels[i, j][0] > bpixels[i, j][1] and bpixels[i, j][0] > bpixels[i, j][2]:  # if is red
-                    bpixels[i, j] = (255, 255, 255)  # change to white in the black image bitmap
+        for i in range(redimg.size[0]):
+            for j in range(redimg.size[1]):
+                if rpixels[i, j][0] <= rpixels[i, j][1] and rpixels[i, j][0] <= rpixels[i, j][2]:
+                    rpixels[i, j] = (255, 255, 255)
+                elif bpixels[i, j][0] > bpixels[i, j][1] and bpixels[i, j][0] > bpixels[i, j][2]:
+                    bpixels[i, j] = (255, 255, 255)
 
         redimg = redimg.rotate(self.rotateAngle, expand=True)
         blackimg = blackimg.rotate(self.rotateAngle, expand=True)
