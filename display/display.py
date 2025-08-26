@@ -25,6 +25,8 @@ class DisplayHelper:
         # Updates the display with the grayscale and red images
         # start displaying on eink display
         # self.epd.clear()
+        blackimg = blackimg.convert('1')
+        redimg = redimg.convert('1')
         self.epd.display(self.epd.getbuffer(blackimg), self.epd.getbuffer(redimg))
         self.logger.info('E-Ink display update complete.')
 

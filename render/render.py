@@ -239,4 +239,10 @@ class RenderHelper:
 
         calBlackImage, calRedImage = self.get_screenshot()
 
+        threshold = 220  # Puedes ajustar este valor (0-255)
+        calBlackImage = calBlackImage.convert('L').point(lambda x: 0 if x < threshold else 255, '1')
+        calRedImage = calRedImage.convert('L').point(lambda x: 0 if x < threshold else 255, '1')
+        calBlackImage.save(self.currPath + '/calendar_black.png')
+        calRedImage.save(self.currPath + '/calendar_red.png')
+
         return calBlackImage, calRedImage
