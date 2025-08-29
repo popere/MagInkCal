@@ -43,7 +43,9 @@
       const rainDataAfter = [$rainDataAfter];
 
       // Nueva configuración de ticks
-      const HOURS_MARKS = [8, 12, 17, 23];
+      const HOURS_MARKS_WIDTH_TEXT = [8, 12, 17, 23];
+
+      const hoursMarks = Array.from({ length: 24 }, (_, i) => i);
 
       function renderChart(containerId, xId, data) {
         const max = Math.max(...data) || 1;
@@ -61,13 +63,30 @@
         const barCount = data.length;
         const barWidthPercent = 100 / barCount;
 
-        HOURS_MARKS.forEach((h) => {
+        hoursMarks.forEach((h) => {
+          if (HOURS_MARKS_WIDTH_TEXT.includes(h)) return;
           const tick = document.createElement("div");
           tick.className = "tick";
+          tick.style.left = h * barWidthPercent + barWidthPercent / 2 + "%";
+          //tick.textContent = h + "h";
+          xAxis.appendChild(tick);
+        });
+
+        HOURS_MARKS_WIDTH_TEXT.forEach((h) => {
+          const tick = document.createElement("div");
+          tick.className = "tick width-text";
           tick.style.left = h * barWidthPercent + barWidthPercent / 2 + "%";
           tick.textContent = h + "h";
           xAxis.appendChild(tick);
         });
+        if (containerId === "rainToday") {
+          const currentHour = new Date().getHours();
+          const tick = document.createElement("div");
+          tick.className = "tick current-hour";
+          tick.style.left =
+            currentHour * barWidthPercent + barWidthPercent / 2 + "%";
+          xAxis.appendChild(tick);
+        }
       }
 
       renderChart("rainToday", "xToday", rainDataToday);

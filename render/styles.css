@@ -336,7 +336,7 @@ div.batt_container .batteryHide {
   position: relative;
   height: 1rem;
   font-size: 0.7rem;
-  margin-top: 0px;
+  margin-top: 1px;
 }
 .tick {
   position: absolute;
@@ -348,9 +348,28 @@ div.batt_container .batteryHide {
   content: "";
   display: block;
   width: 1px;
+  height: 2px;
+  background: #000;
+  margin: 0 auto 0px;
+}
+.tick.width-text::before {
+  content: "";
+  display: block;
+  width: 1px;
   height: 5px;
   background: #000;
   margin: 0 auto 0px;
+}
+.tick.current-hour::before {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  margin: 0 auto 0px;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-bottom: 7px solid red;
+  background: none;
 }
 
 /*
