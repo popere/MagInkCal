@@ -348,6 +348,9 @@ div.batt_container .batteryHide {
   text-align: center;
   transform: translateX(-50%);
   top: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .tick::before {
   content: "";
