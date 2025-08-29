@@ -13,6 +13,7 @@ RPi device, while using a ESP32 or PiZero purely to just retrieve the image from
 import subprocess
 from time import sleep
 from datetime import datetime, timedelta
+from string import Template
 from PIL import Image
 import logging
 import pathlib
@@ -32,18 +33,27 @@ class RenderHelper:
 
         # Usamos wkhtmltoimage para renderizar el HTML a PNG
         try:
-            subprocess.run([
+            cmd = [
                 "wkhtmltoimage",
                 "--enable-local-file-access",
-            "--disable-smart-width",
-            "--width", str(self.imageWidth),
-            "--height", str(self.imageHeight),
-            "--crop-w", str(self.imageWidth),
-            "--crop-h", str(self.imageHeight),
+                "--enable-javascript",
+                "--no-stop-slow-scripts",
+                "--javascript-delay", "4000",    # ajusta si hace falta
+                "--window-status", "ready",      # espera a window.status = 'ready'
+                "--disable-smart-width",
+                "--debug-javascript",
+                "--width", str(self.imageWidth),
+                "--height", str(self.imageHeight),
+                "--crop-w", str(self.imageWidth),
+                "--crop-h", str(self.imageHeight),
                 self.htmlFile,
                 output_file
-            ], check=True)
+            ]
+            subprocess.run(cmd, check=True, timeout=30)  # usa timeout de Python
             self.logger.info(f'Screenshot captured and saved to {output_file}')
+        except subprocess.TimeoutExpired:
+            self.logger.error('wkhtmltoimage timed out')
+            raise
         except subprocess.CalledProcessError as e:
             self.logger.error(f'Error running wkhtmltoimage: {e}')
             raise
@@ -89,6 +99,9 @@ class RenderHelper:
             else:
                 datetime_str = '{}{}am'.format(str(datetimeObj.hour), datetime_str)
         return datetime_str
+    
+    
+
 
     def process_inputs(self, calDict):
         # calDict = {'events': eventList, 'calStartDate': calStartDate, 'today': currDate, 'lastRefresh': currDatetime, 'batteryLevel': batteryLevel, 'weather' weather}
@@ -171,6 +184,22 @@ class RenderHelper:
                 weatherText += '<div>💧 ' + str(round(weather['forecast']['forecastday'][j]['day']['totalprecip_mm'])) + 'mm</div>\n'
               else:
                 weatherText += '<div class="no_rain"></div>\n'
+              match j:
+                case 0:
+                  weatherText += '<div class="rain-wrapper">'
+                  weatherText += '<div class="rain-chart" id="rainToday"></div>'
+                  weatherText += '</div>'
+                  weatherText += '<div class="x-axis" id="xToday"></div>'
+                case 1:
+                  weatherText += '<div class="rain-wrapper">'
+                  weatherText += '<div class="rain-chart" id="rainTomorrow"></div>'
+                  weatherText += '</div>'
+                  weatherText += '<div class="x-axis" id="xTomorrow"></div>'
+                case 2:
+                  weatherText += '<div class="rain-wrapper">'
+                  weatherText += '<div class="rain-chart" id="rainAfter"></div>'
+                  weatherText += '</div>'
+                  weatherText += '<div class="x-axis" id="xAfter"></div>'
               weatherText += '</div>\n'
             weatherText += '</div>\n'
             weatherText += '</div>\n'
@@ -228,20 +257,65 @@ class RenderHelper:
         cal_events_text += '</ol>\n'
         lastUpdateTime = self.get_short_time(datetime.now(), is24hour)
 
+        def build_rain_arrays(weathers):
+            zero_list = ["0.00"] * 24
+            zero = ", ".join(zero_list)
+            if not weathers or len(weathers) == 0:
+                return zero, zero, zero
+            try:
+                first_weather = weathers[0].get("weather", {}) or {}
+                forecast_days = first_weather.get("forecast", {}).get("forecastday", []) or []
+
+                def day_str(idx: int) -> str:
+                    if idx >= len(forecast_days):
+                        return zero
+                    hours = forecast_days[idx].get("hour", []) or []
+                    vals = []
+                    for h in range(24):
+                        v = 0
+                        if h < len(hours):
+                            v = hours[h].get("precip_mm", 0) or 0
+                        try:
+                            v = float(v)
+                        except Exception:
+                            v = 0.0
+                        vals.append(f"{v:.2f}")
+                    return ", ".join(vals)
+
+                return day_str(0), day_str(1), day_str(2)
+            except Exception as e:
+                self.logger.warning(f"Failed to extract hourly rain data: {e}")
+                return zero, zero, zero
+
+        rainDataToday, rainDataTomorrow, rainDataAfter = build_rain_arrays(calDict.get('weathers'))
+
 
         # Append the bottom and write the file
         htmlFile = open(self.currPath + '/calendar.html', "w")
-        htmlFile.write(calendar_template.format(month=month_name, battText=battText, dayOfWeek=cal_days_of_week,
-                                                events=cal_events_text, weather=weatherText, lastUpdateTime=lastUpdateTime))
-        htmlFile.close()
+        tmpl = Template(calendar_template)
+        html = tmpl.safe_substitute(
+            month=month_name,
+            battText=battText,
+            dayOfWeek=cal_days_of_week,
+            events=cal_events_text,
+            weather=weatherText,
+            lastUpdateTime=lastUpdateTime,
+            rainDataToday=rainDataToday,
+            rainDataTomorrow=rainDataTomorrow,
+            rainDataAfter=rainDataAfter,
+        )
+
+        with open(self.currPath + '/calendar.html', "w") as htmlFile:
+            htmlFile.write(html)
+            htmlFile.close()
 
         self.logger.info('HTML generated')
 
         calBlackImage, calRedImage = self.get_screenshot()
 
         threshold = 220  # Puedes ajustar este valor (0-255)
-        calBlackImage = calBlackImage.convert('L').point(lambda x: 0 if x < threshold else 255, '1')
-        calRedImage = calRedImage.convert('L').point(lambda x: 0 if x < threshold else 255, '1')
+        # calBlackImage = calBlackImage.convert('L').point(lambda x: 0 if x < threshold else 255, '1')
+        # calRedImage = calRedImage.convert('L').point(lambda x: 0 if x < threshold else 255, '1')
         calBlackImage.save(self.currPath + '/calendar_black.png')
         calRedImage.save(self.currPath + '/calendar_red.png')
 

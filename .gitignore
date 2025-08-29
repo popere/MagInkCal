@@ -6,6 +6,9 @@ gcal/token.pickle
 render/calendar.html
 render/calendar.png
 
+render/calendar_red.png
+render/calendar_black.png
+
 weather/api.key
 
 *.service

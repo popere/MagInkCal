@@ -206,7 +206,7 @@ div.last-update-time {
 
 div.weather_container {
   width: 100%;
-  height: 110px;
+  height: 150px;
   margin-bottom: 15px;
   display: flex;
   flex-direction: row;
@@ -250,7 +250,7 @@ div.weather_container .weather_days .weather_day .snow {
 }
 
 div.weather_container .weather_days .weather_day .no_rain {
-  height: 1.2rem;
+  height: 24px;
 }
 
 div.weather_container .now {
@@ -309,6 +309,48 @@ div.batt_container .battery0 {
 
 div.batt_container .batteryHide {
   display: none;
+}
+.rain-wrapper {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.2rem;
+}
+
+.rain-chart {
+  display: flex;
+  align-items: flex-end;
+  height: 2rem; /* máximo 2rem */
+  flex: 1;
+  position: relative;
+  border-left: 1px solid #000;
+  border-bottom: 1px solid #000;
+}
+.bar {
+  flex: 1;
+  margin: 0 1px;
+  background: #000;
+}
+
+/* Marcas en X */
+.x-axis {
+  position: relative;
+  height: 1rem;
+  font-size: 0.7rem;
+  margin-top: 0px;
+}
+.tick {
+  position: absolute;
+  text-align: center;
+  transform: translateX(-50%);
+  top: 0;
+}
+.tick::before {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 5px;
+  background: #000;
+  margin: 0 auto 0px;
 }
 
 /*

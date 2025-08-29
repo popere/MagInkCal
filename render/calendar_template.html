@@ -5,28 +5,75 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="last-update-time">{lastUpdateTime}</div>
+    <div class="last-update-time">$lastUpdateTime</div>
     <div class="container p-0 m-0">
       <!-- Calendar -->
       <div class="calendar shadow bg-white p-3">
         <!-- Last update hour -->
         <!-- Weather -->
-        <div>{weather}</div>
+        <div>$weather</div>
         <!-- Month -->
         <div class="align-items-center text-center">
-          <h3 class="month font-weight-bold mb-0 text-uppercase">{month}</h3>
+          <h3 class="month font-weight-bold mb-0 text-uppercase">$month</h3>
         </div>
         <!-- Battery -->
         <div class="batt_container">
-          <img class="{battText}" src="battery.png" />
+          <img class="$battText" src="battery.png" />
         </div>
         <!-- Days of week -->
         <ol class="day-names list-unstyled text-center">
-          {dayOfWeek}
+          $dayOfWeek
         </ol>
         <!-- Calendar and events -->
-        <div>{events}</div>
+        <div>$events</div>
       </div>
     </div>
+    <script>
+      // const rainDataToday = [
+      //   0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 0, 0, 0, 0, 0, 0, 3, 5, 2, 0, 0, 0, 0, 0,
+      // ];
+      // const rainDataTomorrow = [
+      //   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      // ];
+      // const rainDataAfter = [
+      //   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      // ];
+      const rainDataToday = [$rainDataToday];
+      const rainDataTomorrow = [$rainDataTomorrow];
+      const rainDataAfter = [$rainDataAfter];
+
+      // Nueva configuración de ticks
+      const HOURS_MARKS = [8, 12, 17, 23];
+
+      function renderChart(containerId, xId, data) {
+        const max = Math.max(...data) || 1;
+        const chart = document.getElementById(containerId);
+        const xAxis = document.getElementById(xId);
+        // Barras
+        data.forEach((mm) => {
+          const bar = document.createElement("div");
+          bar.className = "bar";
+          bar.style.height = (mm / max) * 100 + "%";
+          chart.appendChild(bar);
+        });
+
+        // Calcular posiciones de ticks en base a nº de barras
+        const barCount = data.length;
+        const barWidthPercent = 100 / barCount;
+
+        HOURS_MARKS.forEach((h) => {
+          const tick = document.createElement("div");
+          tick.className = "tick";
+          tick.style.left = h * barWidthPercent + barWidthPercent / 2 + "%";
+          tick.textContent = h + "h";
+          xAxis.appendChild(tick);
+        });
+      }
+
+      renderChart("rainToday", "xToday", rainDataToday);
+      renderChart("rainTomorrow", "xTomorrow", rainDataTomorrow);
+      renderChart("rainAfter", "xAfter", rainDataAfter);
+      window.status = "ready";
+    </script>
   </body>
 </html>
