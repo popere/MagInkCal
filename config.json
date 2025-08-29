@@ -34,18 +34,6 @@
       "city": "Vitoria",
       "lat": 42.849998,
       "lon": -2.683333
-    },
-    {
-      "daysWeather": ["Hoy", "Mañana", "Pasado"],
-      "city": "Torre",
-      "lat": 41.9591459,
-      "lon": -2.3901713
-    },
-    {
-      "daysWeather": ["Hoy", "Mañana", "Pasado"],
-      "city": "Gijón",
-      "lat": 43.5314642,
-      "lon": -5.7463932
     }
   ]
 }
