@@ -337,7 +337,7 @@ div.batt_container .batteryHide {
 .x-axis {
   position: relative;
   height: 1rem;
-  font-size: 0.7rem;
+  font-size: 0.5rem;
   margin-top: 1px;
 }
 .tick {
