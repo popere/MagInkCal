@@ -206,11 +206,22 @@ div.last-update-time {
 
 div.weather_container {
   width: 100%;
-  height: 180px;
-  margin-bottom: 15px;
+  height: auto;
+  padding: 12px 0;
+  /* margin-bottom: 15px; */
   display: flex;
   flex-direction: row;
 }
+/* primera .weather_container entre hermanas */
+div.weather_container:not(.weather_container ~ .weather_container) {
+  /* height: 150px; */
+  padding-top: 0;
+}
+/* última .weather_container entre hermanas */
+div.weather_container:not(:has(~ .weather_container)) {
+  padding-bottom: 0;
+}
+
 div.weather_container > div:first-child {
   /* Este es el bloque de ciudad y temperatura */
   flex: 0 0 auto; /* Solo ocupa lo que necesita */
@@ -319,7 +330,7 @@ div.batt_container .batteryHide {
 .rain-chart {
   display: flex;
   align-items: flex-end;
-  height: 2rem; /* máximo 2rem */
+  height: 1rem; /* máximo 2rem */
   flex: 1;
   position: relative;
   border-left: 1px solid #000;
