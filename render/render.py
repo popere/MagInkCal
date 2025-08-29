@@ -38,7 +38,7 @@ class RenderHelper:
                 "--enable-local-file-access",
                 "--enable-javascript",
                 "--no-stop-slow-scripts",
-                "--javascript-delay", "4000",    # ajusta si hace falta
+                "--javascript-delay", "6000",    # ajusta si hace falta
                 "--window-status", "ready",      # espera a window.status = 'ready'
                 "--disable-smart-width",
                 "--debug-javascript",
@@ -49,7 +49,7 @@ class RenderHelper:
                 self.htmlFile,
                 output_file
             ]
-            subprocess.run(cmd, check=True, timeout=30)  # usa timeout de Python
+            subprocess.run(cmd, check=True, timeout=60)  # usa timeout de Python
             self.logger.info(f'Screenshot captured and saved to {output_file}')
         except subprocess.TimeoutExpired:
             self.logger.error('wkhtmltoimage timed out')
@@ -314,8 +314,8 @@ class RenderHelper:
         calBlackImage, calRedImage = self.get_screenshot()
 
         threshold = 220  # Puedes ajustar este valor (0-255)
-        # calBlackImage = calBlackImage.convert('L').point(lambda x: 0 if x < threshold else 255, '1')
-        # calRedImage = calRedImage.convert('L').point(lambda x: 0 if x < threshold else 255, '1')
+        calBlackImage = calBlackImage.convert('L').point(lambda x: 0 if x < threshold else 255, '1')
+        calRedImage = calRedImage.convert('L').point(lambda x: 0 if x < threshold else 255, '1')
         calBlackImage.save(self.currPath + '/calendar_black.png')
         calRedImage.save(self.currPath + '/calendar_red.png')
 
