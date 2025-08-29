@@ -332,6 +332,9 @@ div.batt_container .batteryHide {
   margin: 0 1px;
   background: #000;
 }
+.bar.current-hour {
+  background: red !important;
+}
 
 /* Marcas en X */
 .x-axis {

@@ -50,10 +50,14 @@
         const max = Math.max(...data) || 1;
         const chart = document.getElementById(containerId);
         const xAxis = document.getElementById(xId);
+        const currentHour = new Date().getHours();
         // Barras
-        data.forEach((mm) => {
+        data.forEach((mm, i) => {
           const bar = document.createElement("div");
           bar.className = "bar";
+          if (i === currentHour && containerId.includes("rainToday")) {
+            bar.className += " current-hour";
+          }
           bar.style.height = (mm / max) * 100 + "%";
           chart.appendChild(bar);
         });
@@ -79,7 +83,6 @@
           xAxis.appendChild(tick);
         });
         if (containerId.includes("rainToday")) {
-          const currentHour = new Date().getHours();
           const tick = document.createElement("div");
           tick.className = "tick current-hour";
           tick.style.left =
