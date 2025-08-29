@@ -255,7 +255,6 @@ class RenderHelper:
             if (((i+1) % 7) == 0 and i != 1) :
                 cal_events_text += '</ol>\n<ol class="days list-unstyled">\n'
         cal_events_text += '</ol>\n'
-        lastUpdateTime = self.get_short_time(datetime.now(), is24hour)
 
         def build_rain_arrays(weathers):
             zero_list = ["0.00"] * 24
@@ -308,7 +307,6 @@ class RenderHelper:
             dayOfWeek=cal_days_of_week,
             events=cal_events_text,
             weather=weatherText,
-            lastUpdateTime=lastUpdateTime,
             rainDataToday=rainDataToday,
             rainDataTomorrow=rainDataTomorrow,
             rainDataAfter=rainDataAfter,

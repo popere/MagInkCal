@@ -195,15 +195,6 @@ Calendar Styling */
   color: #ddd;
 }
 
-div.last-update-time {
-  display: block;
-  position: absolute;
-  top: 0px;
-  left: 20px;
-  color: #ff0000;
-  font-size: 1rem;
-}
-
 div.weather_container {
   width: 100%;
   height: auto;
