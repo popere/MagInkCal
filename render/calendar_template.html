@@ -79,7 +79,7 @@
           tick.textContent = h + "h";
           xAxis.appendChild(tick);
         });
-        if (containerId === "rainToday") {
+        if (containerId.includes("rainToday")) {
           const currentHour = new Date().getHours();
           const tick = document.createElement("div");
           tick.className = "tick current-hour";
@@ -88,10 +88,15 @@
           xAxis.appendChild(tick);
         }
       }
-
-      renderChart("rainToday", "xToday", rainDataToday);
-      renderChart("rainTomorrow", "xTomorrow", rainDataTomorrow);
-      renderChart("rainAfter", "xAfter", rainDataAfter);
+      for (const [i, v] of rainDataToday.entries()) {
+        renderChart(`rainToday-${i}`, `xToday-${i}`, v);
+      }
+      for (const [i, v] of rainDataTomorrow.entries()) {
+        renderChart(`rainTomorrow-${i}`, `xTomorrow-${i}`, v);
+      }
+      for (const [i, v] of rainDataAfter.entries()) {
+        renderChart(`rainAfter-${i}`, `xAfter-${i}`, v);
+      }
       window.status = "ready";
     </script>
   </body>

@@ -34,6 +34,18 @@
       "city": "Vitoria",
       "lat": 42.849998,
       "lon": -2.683333
+    },
+    {
+      "daysWeather": ["Hoy", "Mañana", "Pasado"],
+      "city": "Gijón",
+      "lat": 43.5314833,
+      "lon": -5.709654
+    },
+    {
+      "daysWeather": ["Hoy", "Mañana", "Pasado"],
+      "city": "Zaragoza",
+      "lat": 41.653501,
+      "lon": -0.858752
     }
   ]
 }

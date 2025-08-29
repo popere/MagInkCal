@@ -187,19 +187,19 @@ class RenderHelper:
               match j:
                 case 0:
                   weatherText += '<div class="rain-wrapper">'
-                  weatherText += '<div class="rain-chart" id="rainToday"></div>'
+                  weatherText += '<div class="rain-chart" id="rainToday-' + str(i) + '"></div>'
                   weatherText += '</div>'
-                  weatherText += '<div class="x-axis" id="xToday"></div>'
+                  weatherText += '<div class="x-axis" id="xToday-' + str(i) + '"></div>'
                 case 1:
                   weatherText += '<div class="rain-wrapper">'
-                  weatherText += '<div class="rain-chart" id="rainTomorrow"></div>'
+                  weatherText += '<div class="rain-chart" id="rainTomorrow-' + str(i) + '"></div>'
                   weatherText += '</div>'
-                  weatherText += '<div class="x-axis" id="xTomorrow"></div>'
+                  weatherText += '<div class="x-axis" id="xTomorrow-' + str(i) + '"></div>'
                 case 2:
                   weatherText += '<div class="rain-wrapper">'
-                  weatherText += '<div class="rain-chart" id="rainAfter"></div>'
+                  weatherText += '<div class="rain-chart" id="rainAfter-' + str(i) + '"></div>'
                   weatherText += '</div>'
-                  weatherText += '<div class="x-axis" id="xAfter"></div>'
+                  weatherText += '<div class="x-axis" id="xAfter-' + str(i) + '"></div>'
               weatherText += '</div>\n'
             weatherText += '</div>\n'
             weatherText += '</div>\n'
@@ -261,31 +261,40 @@ class RenderHelper:
             zero_list = ["0.00"] * 24
             zero = ", ".join(zero_list)
             if not weathers or len(weathers) == 0:
-                return zero, zero, zero
+                return '[' + zero + ']', '[' + zero + ']', '[' + zero + ']'
             try:
-                first_weather = weathers[0].get("weather", {}) or {}
-                forecast_days = first_weather.get("forecast", {}).get("forecastday", []) or []
+                mm_in_days = [[], [], []]
+                for w in weathers:
+                    if not w or "weather" not in w:
+                        self.logger.warning("Invalid weather data structure.")
+                        return '[' + zero + ']', '[' + zero + ']', '[' + zero + ']'
+                    else:
+                        weather = w.get("weather", {}) or {}
+                        forecast_days = weather.get("forecast", {}).get("forecastday", []) or []
 
-                def day_str(idx: int) -> str:
-                    if idx >= len(forecast_days):
-                        return zero
-                    hours = forecast_days[idx].get("hour", []) or []
-                    vals = []
-                    for h in range(24):
-                        v = 0
-                        if h < len(hours):
-                            v = hours[h].get("precip_mm", 0) or 0
-                        try:
-                            v = float(v)
-                        except Exception:
-                            v = 0.0
-                        vals.append(f"{v:.2f}")
-                    return ", ".join(vals)
+                        def day_str(idx: int) -> str:
+                            if idx >= len(forecast_days):
+                                return zero
+                            hours = forecast_days[idx].get("hour", []) or []
+                            vals = []
+                            for h in range(24):
+                                v = 0
+                                if h < len(hours):
+                                    v = hours[h].get("precip_mm", 0) or 0
+                                try:
+                                    v = float(v)
+                                except Exception:
+                                    v = 0.0
+                                vals.append(f"{v:.2f}")
+                            return ", ".join(vals)
 
-                return day_str(0), day_str(1), day_str(2)
+                        mm_in_days[0].append('[' + day_str(0) + ']')
+                        mm_in_days[1].append('[' + day_str(1) + ']')
+                        mm_in_days[2].append('[' + day_str(2) + ']')
+                return ", ".join(mm_in_days[0]), ", ".join(mm_in_days[1]), ", ".join(mm_in_days[2])
             except Exception as e:
                 self.logger.warning(f"Failed to extract hourly rain data: {e}")
-                return zero, zero, zero
+                return '[' + zero + ']', '[' + zero + ']', '[' + zero + ']'
 
         rainDataToday, rainDataTomorrow, rainDataAfter = build_rain_arrays(calDict.get('weathers'))
 

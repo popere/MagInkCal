@@ -206,7 +206,7 @@ div.last-update-time {
 
 div.weather_container {
   width: 100%;
-  height: 150px;
+  height: 180px;
   margin-bottom: 15px;
   display: flex;
   flex-direction: row;
@@ -366,8 +366,8 @@ div.batt_container .batteryHide {
   width: 0;
   height: 0;
   margin: 0 auto 0px;
-  border-left: 3px solid transparent;
-  border-right: 3px solid transparent;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
   border-bottom: 7px solid red;
   background: none;
 }
