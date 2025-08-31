@@ -352,6 +352,11 @@ div.batt_container .batteryHide {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.tick.current-hour {
+  color: red;
+  font-weight: bold;
+  font-size: 0.7rem;
+}
 .tick::before {
   content: "";
   display: block;
@@ -376,7 +381,7 @@ div.batt_container .batteryHide {
   margin: 0 auto 0px;
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
-  border-bottom: 7px solid red;
+  border-bottom: 5px solid red;
   background: none;
 }
 

@@ -29,13 +29,13 @@
     </div>
     <script>
       // const rainDataToday = [
-      //   0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 0, 0, 0, 0, 0, 0, 3, 5, 2, 0, 0, 0, 0, 0,
+      //   [0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 0, 0, 0, 0, 0, 0, 3, 5, 2, 0, 0, 0, 0, 0],
       // ];
       // const rainDataTomorrow = [
-      //   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      //   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // ];
       // const rainDataAfter = [
-      //   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      //   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // ];
       const rainDataToday = [$rainDataToday];
       const rainDataTomorrow = [$rainDataTomorrow];
@@ -79,7 +79,12 @@
           const tick = document.createElement("div");
           tick.className = "tick width-text";
           tick.style.left = h * barWidthPercent + barWidthPercent / 2 + "%";
-          tick.textContent = h + " h";
+          if (
+            !containerId.includes("rainToday") ||
+            Math.abs(h - currentHour) > 3
+          ) {
+            tick.textContent = h + " h";
+          }
           xAxis.appendChild(tick);
         });
         if (containerId.includes("rainToday")) {
@@ -87,6 +92,7 @@
           tick.className = "tick current-hour";
           tick.style.left =
             currentHour * barWidthPercent + barWidthPercent / 2 + "%";
+          tick.textContent = currentHour + " h";
           xAxis.appendChild(tick);
         }
       }
