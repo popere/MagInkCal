@@ -17,6 +17,7 @@ from string import Template
 from PIL import Image
 import logging
 import pathlib
+import socket
 
 class RenderHelper:
 
@@ -297,9 +298,16 @@ class RenderHelper:
 
         rainDataToday, rainDataTomorrow, rainDataAfter = build_rain_arrays(calDict.get('weathers'))
 
+        def _get_local_ip() -> str:
+            with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
+                s.connect(("8.8.8.8", 80))
+                return s.getsockname()[0]
+            try:
+                return socket.gethostbyname(socket.gethostname())
+            except Exception:
+                return "127.0.0.1"
 
-        # Append the bottom and write the file
-        htmlFile = open(self.currPath + '/calendar.html', "w")
+        lastIp = _get_local_ip()
         tmpl = Template(calendar_template)
         html = tmpl.safe_substitute(
             month=month_name,
@@ -310,6 +318,7 @@ class RenderHelper:
             rainDataToday=rainDataToday,
             rainDataTomorrow=rainDataTomorrow,
             rainDataAfter=rainDataAfter,
+            lastIp= lastIp
         )
 
         with open(self.currPath + '/calendar.html', "w") as htmlFile:
