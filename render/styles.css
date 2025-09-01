@@ -390,11 +390,10 @@ div.batt_container .batteryHide {
 }
 .last-ip {
   position: absolute;
-  right: 4px;
-  top: 2px;
+  right: 10px;
+  top: 4px;
   font-size: 0.5rem;
   color: red;
-  font-family: "Quattrocento-Regular";
 }
 
 /*
