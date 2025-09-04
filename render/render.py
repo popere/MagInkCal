@@ -178,11 +178,11 @@ class RenderHelper:
               if (('maxwind_kph' in weather['forecast']['forecastday'][j]['day']) and weather['forecast']['forecastday'][j]['day']['maxwind_kph'] != 0):
                 weatherText += '<div>🍃 ' + str(round(weather['forecast']['forecastday'][j]['day']['maxwind_kph'])) + 'km/h</div>\n'
               if ((weather['forecast']['forecastday'][j]['day']['daily_will_it_snow'] == 1) and weather['forecast']['forecastday'][j]['day']['totalsnow_cm'] != 0 and (weather['forecast']['forecastday'][j]['day']['daily_will_it_rain'] == 1) and weather['forecast']['forecastday'][j]['day']['totalprecip_mm'] != 0):
-                weatherText += '<div class="snow">💧/❄️ ' + str(round(weather['forecast']['forecastday'][j]['day']['totalprecip_mm'])) + ' mm / ' + str(round(weather['forecast']['forecastday'][j]['day']['totalsnow_cm'])) + 'cm</div>\n'
+                weatherText += '<div class="snow">💧/❄️ ' + str(round(weather['forecast']['forecastday'][j]['day']['totalprecip_mm'], 1)) + ' mm / ' + str(round(weather['forecast']['forecastday'][j]['day']['totalsnow_cm'], 1)) + 'cm</div>\n'
               elif ((weather['forecast']['forecastday'][j]['day']['daily_will_it_snow'] == 1) and weather['forecast']['forecastday'][j]['day']['totalsnow_cm'] != 0):
-                weatherText += '<div>❄️ ' + str(round(weather['forecast']['forecastday'][j]['day']['totalsnow_cm'])) + 'mm</div>\n'
+                weatherText += '<div>❄️ ' + str(round(weather['forecast']['forecastday'][j]['day']['totalsnow_cm'], 1)) + 'cm</div>\n'
               elif ((weather['forecast']['forecastday'][j]['day']['daily_will_it_rain'] == 1) and weather['forecast']['forecastday'][j]['day']['totalprecip_mm'] != 0):
-                weatherText += '<div>💧 ' + str(round(weather['forecast']['forecastday'][j]['day']['totalprecip_mm'])) + 'mm</div>\n'
+                weatherText += '<div>💧 ' + str(round(weather['forecast']['forecastday'][j]['day']['totalprecip_mm'], 1)) + 'mm</div>\n'
               else:
                 weatherText += '<div class="no_rain"></div>\n'
               match j:
