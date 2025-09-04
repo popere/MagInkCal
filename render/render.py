@@ -185,18 +185,17 @@ class RenderHelper:
                 weatherText += '<div>💧 ' + str(round(weather['forecast']['forecastday'][j]['day']['totalprecip_mm'], 1)) + 'mm</div>\n'
               else:
                 weatherText += '<div class="no_rain"></div>\n'
-              match j:
-                case 0:
+                if j == 0:
                   weatherText += '<div class="rain-wrapper">'
                   weatherText += '<div class="rain-chart" id="rainToday-' + str(i) + '"></div>'
                   weatherText += '</div>'
                   weatherText += '<div class="x-axis" id="xToday-' + str(i) + '"></div>'
-                case 1:
+                elif j == 1:
                   weatherText += '<div class="rain-wrapper">'
                   weatherText += '<div class="rain-chart" id="rainTomorrow-' + str(i) + '"></div>'
                   weatherText += '</div>'
                   weatherText += '<div class="x-axis" id="xTomorrow-' + str(i) + '"></div>'
-                case 2:
+                elif j == 2:
                   weatherText += '<div class="rain-wrapper">'
                   weatherText += '<div class="rain-chart" id="rainAfter-' + str(i) + '"></div>'
                   weatherText += '</div>'
