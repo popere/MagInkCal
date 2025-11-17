@@ -1,7 +1,7 @@
 {
   "displayTZ": "Europe/Madrid",
   "thresholdHours": 24,
-  "maxEventsPerDay": 4,
+  "maxEventsPerDay": 5,
   "isDisplayToScreen": true,
   "isShutdownOnComplete": false,
   "batteryDisplayMode": 0,
