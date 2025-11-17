@@ -218,12 +218,10 @@ class RenderHelper:
                 event = calList[i][j]
                 event['summary'] = event['summary'].replace('Pádel', '🎾').replace('Padel', '🎾').replace('padel', '🎾').replace('pádel', '🎾')
                 cal_events_text += '<div class="event'
-                if event['isUpdated']:
+                if event['isUpdated'] or event['summary'] == '':
                     cal_events_text += ' text-danger'
                 elif currDate.month != calDict['today'].month:
                     cal_events_text += ' text-muted'
-                elif event['summary'] == '':
-                    cal_events_text += ' now'
                 if event['isMultiday']:
                     if event['startDatetime'].date() == currDate:
                         cal_events_text += '">►' + event['summary']
@@ -239,7 +237,7 @@ class RenderHelper:
                 elif event['allday']:
                     cal_events_text += '"> - ' + event['summary']
                 elif event['summary'] == '':
-                    cal_events_text += '"><span class="red-line"></span><span>' + self.get_short_time(event['startDatetime'], is24hour)  +'</span><span class="red-line"></span>'
+                    cal_events_text += '"><div>— ' + self.get_short_time(event['startDatetime'], is24hour)  +' —</div>'
                 else:
                     cal_events_text += '"><div> - ' + self.get_short_time(event['startDatetime'], is24hour) + ' ' + event['summary'] + '</div>'
                 cal_events_text += '</div>\n'
