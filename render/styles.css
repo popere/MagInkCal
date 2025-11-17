@@ -165,6 +165,26 @@ Calendar Styling */
   text-overflow: initial;
   border-radius: 0rem;
   margin-bottom: 1px;
+  display: flex;
+  align-items: center;
+  &.now {
+    color: #ff0000;
+    font-weight: bold;
+    text-align: center;
+    justify-content: center;
+    .red-line {
+      content: "";
+      display: inline-block;
+      height: 2px;
+      width: 100%;
+      margin-top: auto;
+      margin-bottom: auto;
+      background: #ff0000;
+      vertical-align: middle;
+      margin-right: 4px;
+      margin-left: 4px;
+    }
+  }
 }
 
 .calendar .days li .event.span-2 {

@@ -132,9 +132,33 @@ class GcalHelper:
             newEvent['updatedDatetime'] = self.to_datetime(event['updated'], localTZ)
             newEvent['isUpdated'] = self.is_recent_updated(newEvent['updatedDatetime'], thresholdHours)
             newEvent['isMultiday'] = self.is_multiday(newEvent['startDatetime'], newEvent['endDatetime'])
+            # Check if an event with similar properties already exists in eventList
+            isDuplicate = False
+            for existingEvent in eventList:
+              if (existingEvent['summary'] == newEvent['summary'] and
+                existingEvent['startDatetime'] == newEvent['startDatetime'] and
+                existingEvent['endDatetime'] == newEvent['endDatetime']):
+                isDuplicate = True
+                break
+
+            if isDuplicate:
+              continue
             eventList.append(newEvent)
 
-        # We need to sort eventList because the event will be sorted in "calendar order" instead of hours order
-        # TODO: improve because of double cycle for now is not much cost
+        # Sort eventList once, including the current time marker if applicable
+        now = dt.datetime.now(localTZ)
+        if startDatetime <= now <= endDatetime:
+          nowEvent = {
+            'summary': '',
+            'allday': False,
+            'startDatetime': now,
+            'endDatetime': now,
+            'updatedDatetime': now,
+            'isUpdated': False,
+            'isMultiday': False
+          }
+          eventList.append(nowEvent)
+        
+        # Single sort operation
         eventList = sorted(eventList, key=lambda k: k['startDatetime'])
         return eventList

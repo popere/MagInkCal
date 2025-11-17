@@ -88,17 +88,7 @@ class RenderHelper:
         if is24hour:
             datetime_str = '{}:{:02d}'.format(datetimeObj.hour, datetimeObj.minute)
         else:
-            if datetimeObj.minute > 0:
-                datetime_str = '.{:02d}'.format(datetimeObj.minute)
-
-            if datetimeObj.hour == 0:
-                datetime_str = '12{}am'.format(datetime_str)
-            elif datetimeObj.hour == 12:
-                datetime_str = '12{}pm'.format(datetime_str)
-            elif datetimeObj.hour > 12:
-                datetime_str = '{}{}pm'.format(str(datetimeObj.hour % 12), datetime_str)
-            else:
-                datetime_str = '{}{}am'.format(str(datetimeObj.hour), datetime_str)
+            datetime_str = '{}:{:02d}'.format(datetimeObj.hour, datetimeObj.minute)
         return datetime_str
     
     
@@ -232,6 +222,8 @@ class RenderHelper:
                     cal_events_text += ' text-danger'
                 elif currDate.month != calDict['today'].month:
                     cal_events_text += ' text-muted'
+                elif event['summary'] == '':
+                    cal_events_text += ' now'
                 if event['isMultiday']:
                     if event['startDatetime'].date() == currDate:
                         cal_events_text += '">►' + event['summary']
@@ -246,6 +238,8 @@ class RenderHelper:
                     cal_events_text += '"> 🏖️ ' + event['summary'].replace('Vacaciones ', 'Vacas')
                 elif event['allday']:
                     cal_events_text += '"> - ' + event['summary']
+                elif event['summary'] == '':
+                    cal_events_text += '"><span class="red-line"></span><span>' + self.get_short_time(event['startDatetime'], is24hour)  +'</span><span class="red-line"></span>'
                 else:
                     cal_events_text += '"><div> - ' + self.get_short_time(event['startDatetime'], is24hour) + ' ' + event['summary'] + '</div>'
                 cal_events_text += '</div>\n'
