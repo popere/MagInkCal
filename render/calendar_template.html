@@ -29,66 +29,63 @@
       </div>
     </div>
     <script>
-      // const rainDataToday = [
-      //   [0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 0, 0, 0, 0, 0, 0, 3, 5, 2, 0, 0, 0, 0, 0],
-      // ];
-      // const rainDataTomorrow = [
-      //   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // ];
-      // const rainDataAfter = [
-      //   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // ];
       const rainDataToday = [$rainDataToday];
       const rainDataTomorrow = [$rainDataTomorrow];
       const rainDataAfter = [$rainDataAfter];
 
-      // Nueva configuración de ticks
       const HOURS_MARKS_WIDTH_TEXT = [3, 8, 12, 17, 22];
-
-      const hoursMarks = Array.from({ length: 24 }, (_, i) => i);
+      const hoursMarks = [];
+      for (var i = 0; i < 24; i++) {
+        hoursMarks.push(i);
+      }
 
       function renderChart(containerId, xId, data) {
-        const max = Math.max(...data) || 1;
+        const max = Math.max.apply(null, data) || 1;
         const chart = document.getElementById(containerId);
         const xAxis = document.getElementById(xId);
         const currentHour = new Date().getHours();
+        const barCount = data.length;
+        const barWidthPercent = 100 / barCount;
+
         // Barras
-        data.forEach((mm, i) => {
+        for (var i = 0; i < data.length; i++) {
+          const mm = data[i];
           const bar = document.createElement("div");
           bar.className = "bar";
-          if (i === currentHour && containerId.includes("rainToday")) {
+          if (i === currentHour && containerId.indexOf("rainToday") !== -1) {
             bar.className += " current-hour";
           }
           bar.style.height = (mm / max) * 100 + "%";
           chart.appendChild(bar);
-        });
+        }
 
-        // Calcular posiciones de ticks en base a nº de barras
-        const barCount = data.length;
-        const barWidthPercent = 100 / barCount;
-
-        hoursMarks.forEach((h) => {
-          if (HOURS_MARKS_WIDTH_TEXT.includes(h)) return;
+        // Ticks sin texto
+        for (var j = 0; j < hoursMarks.length; j++) {
+          const h = hoursMarks[j];
+          if (HOURS_MARKS_WIDTH_TEXT.indexOf(h) !== -1) continue;
           const tick = document.createElement("div");
           tick.className = "tick";
           tick.style.left = h * barWidthPercent + barWidthPercent / 2 + "%";
-          //tick.textContent = h + "h";
           xAxis.appendChild(tick);
-        });
+        }
 
-        HOURS_MARKS_WIDTH_TEXT.forEach((h) => {
+        // Ticks con texto
+        for (var k = 0; k < HOURS_MARKS_WIDTH_TEXT.length; k++) {
+          const h = HOURS_MARKS_WIDTH_TEXT[k];
           const tick = document.createElement("div");
           tick.className = "tick width-text";
           tick.style.left = h * barWidthPercent + barWidthPercent / 2 + "%";
           if (
-            !containerId.includes("rainToday") ||
+            containerId.indexOf("rainToday") === -1 ||
             Math.abs(h - currentHour) > 3
           ) {
             tick.textContent = h + " h";
           }
           xAxis.appendChild(tick);
-        });
-        if (containerId.includes("rainToday")) {
+        }
+
+        // Hora actual solo para hoy
+        if (containerId.indexOf("rainToday") !== -1) {
           const tick = document.createElement("div");
           tick.className = "tick current-hour";
           tick.style.left =
@@ -97,15 +94,18 @@
           xAxis.appendChild(tick);
         }
       }
-      for (const [i, v] of rainDataToday.entries()) {
-        renderChart(`rainToday-${i}`, `xToday-${i}`, v);
+
+      // Llamar a renderChart con bucles clásicos
+      for (var i = 0; i < rainDataToday.length; i++) {
+        renderChart("rainToday-" + i, "xToday-" + i, rainDataToday[i]);
       }
-      for (const [i, v] of rainDataTomorrow.entries()) {
-        renderChart(`rainTomorrow-${i}`, `xTomorrow-${i}`, v);
+      for (var i = 0; i < rainDataTomorrow.length; i++) {
+        renderChart("rainTomorrow-" + i, "xTomorrow-" + i, rainDataTomorrow[i]);
       }
-      for (const [i, v] of rainDataAfter.entries()) {
-        renderChart(`rainAfter-${i}`, `xAfter-${i}`, v);
+      for (var i = 0; i < rainDataAfter.length; i++) {
+        renderChart("rainAfter-" + i, "xAfter-" + i, rainDataAfter[i]);
       }
+
       window.status = "ready";
     </script>
   </body>
